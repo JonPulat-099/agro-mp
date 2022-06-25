@@ -19,7 +19,7 @@
             </div>
           </template>
           <v-card class="mx-auto rounded-lg cabinet">
-            <v-list dense>
+            <v-list dense >
               <v-list-item-group>
                 <v-list-item v-for="(item, i) in user" :key="i">
                   <v-list-item-content>
@@ -67,7 +67,7 @@
       </div>
     </div>
     <div class="navbar__bottom container">
-      <v-menu offset-y>
+      <v-menu offset-y content-class="category__menu">
         <template v-slot:activator="{ on, attrs }">
           <div v-bind="attrs" v-on="on" class="category">
             <img src="/icons/category.svg" alt="" />
@@ -75,31 +75,39 @@
             <v-icon> mdi-chevron-down </v-icon>
           </div>
         </template>
-        <v-card class="rounded-lg change__lang">
-          <v-list dense>
-            <v-list-item-group>
-              <v-list-item v-for="(item, i) in categories" :key="i">
+        <v-card class="categories__list" outlined>
+          <v-list width="250px">
+            <v-list-item-group  v-model="selected_category" active-class="active__category">
+              <v-list-item
+                v-for="(item, i) in categories"
+                :key="i"
+                @click="test"
+              >
                 <v-list-item-content>
                   <v-list-item-title>
-                    <v-menu v-if="item.is_subCategory" offset-x>
+                    <v-menu v-if="item.is_subCategory" offset-x content-class="subcategory__menu">
                       <template v-slot:activator="{ on: turn_on, attrs: attr }">
-                        <div v-bind="attr" v-on="turn_on">
+                        <div v-bind="attr" v-on="turn_on" class="active" @click="selected_category = i">
                           {{ item.name }}
                           <v-icon v-if="item.is_subCategory"
                             >mdi-chevron-right</v-icon
                           >
                         </div>
                       </template>
-                      <v-card>
+                      <v-card outlined class="categories__list">
                         <v-list>
-                          <v-list-tile
-                            v-for="(sub, k) in item.sub_category"
-                            :key="k"
-                          >
-                            <v-list-tile-title>{{
-                              sub.name
-                            }}</v-list-tile-title>
-                          </v-list-tile>
+                          <v-list-item-group>
+                            <v-list-item
+                              v-for="(item, i) in item.sub_category"
+                              :key="i"
+                            >
+                              <v-list-item-content>
+                                <v-list-item-title>
+                                  {{ item.name }}
+                                </v-list-item-title>
+                                </v-list-item-content>
+                              </v-list-item
+                          ></v-list-item-group>
                         </v-list>
                       </v-card>
                     </v-menu>
@@ -153,6 +161,7 @@ export default {
     return {
       user: ['Sign In', 'Sign Up'],
       langs: ['ru', 'en'],
+      selected_category: 0,
       links: [
         {
           name: 'Ommabop mahsulotlar',
@@ -258,6 +267,12 @@ export default {
       ],
     }
   },
+
+  methods: {
+    test() {
+      console.log('test');
+    }
+  }
 }
 </script>
 <style lang="scss" src="@/assets/navbar.scss"></style>

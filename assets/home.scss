@@ -27,3 +27,20 @@
     }
   }
 }
+
+.blocks {
+  margin: 40px auto 190px !important;
+}
+
+.why__us {
+  &--section {
+    gap: 30px
+  }
+
+  &--item {
+    padding: 28px 24px;
+    border-radius: 20px;
+    background: #F7FCFC;
+    margin: 0 10px;
+  }
+}

@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar">
-    <div class="navbar__top container">
+    <div class="navbar__top container" mb-5>
       <div class="left">
         <img src="/logo.svg" alt="" class="logo left" />
         <div class="search">
@@ -14,7 +14,7 @@
       <div class="right">
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
-            <div v-bind="attrs" v-on="on">
+            <div v-bind="attrs" v-on="on" class="user">
               <img src="/icons/user.svg" alt="" />
             </div>
           </template>
@@ -76,7 +76,7 @@
           </div>
         </template>
         <v-card class="categories__list" outlined>
-          <v-list width="250px">
+          <v-list dense width="250px">
             <v-list-item-group  v-model="selected_category" active-class="active__category">
               <v-list-item
                 v-for="(item, i) in categories"
@@ -161,7 +161,7 @@ export default {
     return {
       user: ['Sign In', 'Sign Up'],
       langs: ['ru', 'en'],
-      selected_category: 0,
+      selected_category: "",
       links: [
         {
           name: 'Ommabop mahsulotlar',

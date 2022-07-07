@@ -2,10 +2,11 @@
   <v-app>
     <Navbar />
     <v-main>
-      <v-container>
+      <!-- <v-container> -->
         <Nuxt />
-      </v-container>
+      <!-- </v-container> -->
     </v-main>
+    <Footer />
   </v-app>
 </template>
 

@@ -18,10 +18,10 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['@/assets/mixins.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ['~/plugins/v-mask.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -40,9 +40,7 @@ export default {
   ],
 
   styleResources: {
-    scss: [
-      "@/assets/mixins.scss"
-    ],
+    scss: ['@/assets/mixins.scss'],
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -66,15 +64,15 @@ export default {
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
         },
-        
+
         light: {
           green: '#F8C018',
-        }
+        },
       },
     },
     icons: {
       iconfont: 'mdiSvg', // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4' || 'faSvg'
-    },  
+    },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

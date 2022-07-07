@@ -4,7 +4,7 @@
     <v-flex row wrap xs12 justify-space-between align-center>
       <h1 class="headers">Sara kategoriyalar</h1>
       <a href="#" class="show__more">
-        Barchasini ko’rsatish
+        teststset
         <v-icon>mdi-chevron-right</v-icon>
       </a>
     </v-flex>

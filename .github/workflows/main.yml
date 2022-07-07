@@ -20,8 +20,8 @@ jobs:
           --volume="$PWD:/app" \
           node:16-alpine sh -c "cd /app && npm install && npm run build && npm run generate"
 
-      - name: Deploy to Netlify
         if: github.event.pull_request.merged == true
+      - name: Deploy to Netlify
         uses: netlify/actions/cli@master
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }} # Mb7f7eIsjtmpSghx5nMlHketzhmwhgnVA8uRWXVUtc8
@@ -29,8 +29,8 @@ jobs:
         with:
           args: deploy --dir=dist --prod
           secrets: '["NETLIFY_AUTH_TOKEN", "DEV_NETLIFY_SITE_ID"]'
-      - name: After Deploy
         if: github.event.pull_request.draft == false
+      - name: After Deploy
         run: ls -ls dist/
 
       - name: Finish

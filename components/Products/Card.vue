@@ -1,11 +1,11 @@
 <template>
-  <v-card width="280px" class="product__card">
+  <v-card class="product__card">
     <v-card-title elevation="0">
       <span v-if="card.is_new" class="new"> Yangi </span>
       <v-btn icon @click="toogleFavourites">
-        <v-icon v-if="!card.is_favorite" color="#F8C018"
-          >mdi-heart-outline</v-icon
-        >
+        <v-icon v-if="!card.is_favorite" color="#F8C018">
+          mdi-heart-outline
+        </v-icon>
         <v-icon v-else color="#F8C018">mdi-heart</v-icon>
       </v-btn>
     </v-card-title>
@@ -14,7 +14,7 @@
       <article class="product__info">
         <div class="category">
           <p>{{ card.category_name }}</p>
-          <span  v-if="card.is_new && card.rating == null">
+          <span v-if="card.is_new && card.rating == null">
             <v-icon color="#F8C018">mdi-star</v-icon>
             {{ card.rating }}
           </span>
@@ -98,8 +98,11 @@ export default {
     margin: 0 0 20px;
 
     aside {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       &:first-child {
-        border-radius: 10px;
+        border-radius: 12px;
         border: 1px solid $base_color;
         overflow: hidden;
         .v-btn {

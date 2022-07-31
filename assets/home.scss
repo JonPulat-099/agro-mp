@@ -33,14 +33,23 @@
 }
 
 .why__us {
-  &--section {
-    gap: 30px
-  }
-
   &--item {
+    width: 100%;
     padding: 28px 24px;
     border-radius: 20px;
-    background: #F7FCFC;
-    margin: 0 10px;
+    background: #f7fcfc;
+    height: 100%;
+  }
+}
+
+.sale {
+  margin-bottom: 120px;
+  &__title {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 44px;
+    color: #232730;
+    margin-bottom: 40px;
+    margin-left: 12px;
   }
 }

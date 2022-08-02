@@ -15,15 +15,15 @@
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on" class="user">
-              <img src="/icons/user.svg" alt="" />
+              <img src="/icons/user.svg" alt="user icon" />
             </div>
           </template>
           <v-card class="mx-auto rounded-lg cabinet">
-            <v-list dense >
+            <v-list dense>
               <v-list-item-group>
-                <v-list-item v-for="(item, i) in user" :key="i">
+                <v-list-item v-for="(item, i) in user" :key="i" :to="item.link">
                   <v-list-item-content>
-                    <v-list-item-title v-text="item"></v-list-item-title>
+                    <v-list-item-title v-text="item.item"></v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
               </v-list-item-group>
@@ -77,7 +77,10 @@
         </template>
         <v-card class="categories__list" outlined>
           <v-list dense width="250px">
-            <v-list-item-group  v-model="selected_category" active-class="active__category">
+            <v-list-item-group
+              v-model="selected_category"
+              active-class="active__category"
+            >
               <v-list-item
                 v-for="(item, i) in categories"
                 :key="i"
@@ -85,9 +88,18 @@
               >
                 <v-list-item-content>
                   <v-list-item-title>
-                    <v-menu v-if="item.is_subCategory" offset-x content-class="subcategory__menu">
+                    <v-menu
+                      v-if="item.is_subCategory"
+                      offset-x
+                      content-class="subcategory__menu"
+                    >
                       <template v-slot:activator="{ on: turn_on, attrs: attr }">
-                        <div v-bind="attr" v-on="turn_on" class="active" @click="selected_category = i">
+                        <div
+                          v-bind="attr"
+                          v-on="turn_on"
+                          class="active"
+                          @click="selected_category = i"
+                        >
                           {{ item.name }}
                           <v-icon v-if="item.is_subCategory"
                             >mdi-chevron-right</v-icon
@@ -105,9 +117,9 @@
                                 <v-list-item-title>
                                   {{ item.name }}
                                 </v-list-item-title>
-                                </v-list-item-content>
-                              </v-list-item
-                          ></v-list-item-group>
+                              </v-list-item-content>
+                            </v-list-item></v-list-item-group
+                          >
                         </v-list>
                       </v-card>
                     </v-menu>
@@ -159,9 +171,12 @@ export default {
   name: 'MainNavbar',
   data() {
     return {
-      user: ['Sign In', 'Sign Up'],
+      user: [
+        { item: 'Sign In', link: '/login' },
+        { item: 'Sign Up', link: '/registration' },
+      ],
       langs: ['ru', 'en'],
-      selected_category: "",
+      selected_category: '',
       links: [
         {
           name: 'Ommabop mahsulotlar',
@@ -270,9 +285,9 @@ export default {
 
   methods: {
     test() {
-      console.log('test');
-    }
-  }
+      console.log('test')
+    },
+  },
 }
 </script>
 <style lang="scss" src="@/assets/navbar.scss"></style>

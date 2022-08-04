@@ -62,30 +62,35 @@
               :max="max"
               :min="min"
               hide-details
-              class="align-center"
+              class="align-center mt-6"
+              color="#07D271"
+              tick-size="5"
+              thumb-size="16"
             >
-              <template v-slot:prepend>
-                <v-text-field
-                  :value="range.price[0]"
-                  class="mt-0 pt-0"
-                  hide-details
-                  single-line
-                  type="number"
-                  style="width: 60px"
-                  @change="$set(range.price, 0, $event)"
-                ></v-text-field>
-              </template>
-              <template v-slot:append>
-                <v-text-field
-                  :value="range.price[1]"
-                  class="mt-0 pt-0"
-                  hide-details
-                  single-line
-                  type="number"
-                  style="width: 60px"
-                  @change="$set(range.price, 1, $event)"
-                ></v-text-field>
-              </template>
+<!--              <template v-slot:prepend>-->
+<!--                <v-text-field-->
+<!--                  :value="range.price[0]"-->
+<!--                  class="mt-0 pt-0"-->
+<!--                  hide-details-->
+<!--                  single-line-->
+<!--                  type="number"-->
+<!--                  style="width: 60px"-->
+<!--                  @change="$set(range.price, 0, $event)"-->
+<!--                  hide-spin-buttons-->
+<!--                ></v-text-field>-->
+<!--              </template>-->
+<!--              <template v-slot:append>-->
+<!--                <v-text-field-->
+<!--                  :value="range.price[1]"-->
+<!--                  class="mt-0 pt-0"-->
+<!--                  hide-details-->
+<!--                  single-line-->
+<!--                  type="number"-->
+<!--                  style="width: 60px"-->
+<!--                  @change="$set(range.price, 1, $event)"-->
+<!--                  hide-spin-buttons-->
+<!--                ></v-text-field>-->
+<!--              </template>-->
             </v-range-slider>
           </div>
         </div>

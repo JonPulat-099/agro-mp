@@ -1,8 +1,8 @@
 .container {
-  width: 95%;
+  width: 100%;
   margin: 0 auto !important;
   padding: 0;
-  max-width: 1180px;
+  max-width: 1200px;
 }
 
 .row {
@@ -17,24 +17,24 @@
 }
 
 .show__more {
-    display: inline-flex;
-    align-items: center;
-    color: $black !important;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 140%;
-    text-decoration: none;
-    padding: 0 10px 0 0;
-    transition: .3s;
+  display: inline-flex;
+  align-items: center;
+  color: $black !important;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  text-decoration: none;
+  padding: 0 10px 0 0;
+  transition: 0.3s;
 
+  .v-icon {
+    color: $base_color;
+  }
+
+  &:hover {
+    color: $base_color !important;
     .v-icon {
-        color: $base_color;
+      transform: translateX(10px);
     }
-
-    &:hover {
-        color: $base_color !important;
-        .v-icon {
-            transform: translateX(10px);
-        }
-    }
+  }
 }

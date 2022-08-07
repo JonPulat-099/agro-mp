@@ -1,0 +1,132 @@
+.product {
+  &__item{
+    margin-bottom: 8px;
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 88px;
+    height: 65px;
+    background: #F5F6F7;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    &.active {
+      border: 1px solid #232730;
+    }
+  }
+  &__main {
+    width: min(100%, 450px);
+    height: 354px;
+    background: #F5F6F7;
+    margin-left: 15px;
+    border-radius: 10px;
+    img  {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  &__info--id, &__info--market {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 120%;
+    color: #A8A8A8;
+    margin-bottom: 10px;
+    span {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 140%;
+      color: #232730;
+    }
+  }
+
+  &__info--title {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 44px;
+    color: #232730;
+    margin-bottom: 20px;
+    margin-top: 18px;
+  }
+
+  &__info--old-price {
+    font-size: 18px;
+    line-height: 120%;
+    text-decoration-line: line-through;
+    color: #A8A8A8;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  &__info--price {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 120%;
+    color: #232730;
+    span {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 140%;
+      color: #232730;
+      margin-left: 10px;
+    }
+  }
+
+  &__info--rating-val {
+    font-size: 16px;
+    line-height: 140%;
+    color: #000000;
+  }
+
+  &__info--description {
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 140%;
+    color: #232730;
+  }
+}
+aside {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &:first-child {
+    border-radius: 12px;
+    border: 1px solid $base_color;
+    overflow: hidden;
+    .v-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: $base_color;
+      color: $white;
+    }
+    span {
+      display: inline-block;
+      margin: 0 5px;
+    }
+  }
+
+  &:last-child {
+    .v-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: #07D271;
+
+      img {
+        filter: brightness(0) invert(1);
+      }
+    }
+  }
+}
+.sub_text {
+  font-size: 14px;
+  line-height: 140%;
+  color: #000000;
+}
+

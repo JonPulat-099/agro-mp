@@ -38,7 +38,6 @@
               </v-list-item>
             </v-list>
           </v-expansion-panel-content>
-
         </v-expansion-panel>
       </v-expansion-panels>
       <v-divider class="mt-4"/>
@@ -51,7 +50,6 @@
               :items="currency"
               v-model="range.currency"
               hide-details
-
               dense
               append-icon="mdi-chevron-down"
             />
@@ -64,34 +62,71 @@
               hide-details
               class="align-center mt-6"
               color="#07D271"
-              tick-size="5"
+              tick-size="100"
               thumb-size="16"
-            >
-<!--              <template v-slot:prepend>-->
-<!--                <v-text-field-->
-<!--                  :value="range.price[0]"-->
-<!--                  class="mt-0 pt-0"-->
-<!--                  hide-details-->
-<!--                  single-line-->
-<!--                  type="number"-->
-<!--                  style="width: 60px"-->
-<!--                  @change="$set(range.price, 0, $event)"-->
-<!--                  hide-spin-buttons-->
-<!--                ></v-text-field>-->
-<!--              </template>-->
-<!--              <template v-slot:append>-->
-<!--                <v-text-field-->
-<!--                  :value="range.price[1]"-->
-<!--                  class="mt-0 pt-0"-->
-<!--                  hide-details-->
-<!--                  single-line-->
-<!--                  type="number"-->
-<!--                  style="width: 60px"-->
-<!--                  @change="$set(range.price, 1, $event)"-->
-<!--                  hide-spin-buttons-->
-<!--                ></v-text-field>-->
-<!--              </template>-->
-            </v-range-slider>
+            />
+            <div class="d-flex justify-space-between">
+              <v-text-field
+                :value="range.price[0]"
+                class="mt-2 pt-0"
+                hide-details
+                single-line
+                type="number"
+                style="width: 60px"
+                @change="$set(range.price, 0, $event)"
+                hide-spin-buttons
+              ></v-text-field>
+
+              <v-text-field
+                :value="range.price[1]"
+                class="mt-2 pt-0"
+                hide-details
+                single-line
+                type="number"
+                style="width: 60px"
+                @change="$set(range.price, 1, $event)"
+                hide-spin-buttons
+              ></v-text-field>
+            </div>
+            <v-divider class="mt-8"/>
+            <div class="filters__body--title mt-4">Turlari bo’yicha</div>
+            <v-expansion-panels flat hover>
+              <v-expansion-panel v-for="(item, i) in types" :key="i">
+                <v-expansion-panel-header color="#F7FCFC">
+                  <v-checkbox
+                    v-model="item.selected"
+                    color="success"
+                    hide-details
+                    :label="item.name"
+                  />
+                </v-expansion-panel-header>
+                <v-expansion-panel-content color="#F7FCFC" v-if="item.has_subcategories">
+                  <v-list dense  color="#F7FCFC">
+                    <v-list-item
+                      link
+                      v-for="(ctg, idx) in item.subcategories_list"
+                      :key="idx"
+                      router
+                    >
+                      <v-list-item-content>
+                        <v-list-item-title>
+                          <v-checkbox
+                            v-model="ctg.selected"
+                            color="success"
+                            hide-details
+                            :label="ctg.name"
+                          />
+                        </v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-list>
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+            </v-expansion-panels>
+
+            <v-divider class="mt-8"/>
+            <div class="filters__body--title mt-4">Do’kon raqami bo’yicha</div>
+            <button class="filters__btn">Qidirish</button>
           </div>
         </div>
       </div>
@@ -105,7 +140,7 @@ export default {
     currency: ['UZS', 'USD', 'RUB'],
     range: {
       currency: 'UZS',
-      price: [50000, 100000],
+      price: [100000, 600000],
     },
     min: 0,
     max: 1000000,
@@ -134,6 +169,31 @@ export default {
         name: "Go'sht",
         has_subcategories: false,
         subcategories_list: [],
+      },
+    ],
+    types: [
+      {
+        id: 1,
+        name: 'Barcha turdagi',
+        selected: false,
+        has_subcategories: true,
+        subcategories_list: [
+          {
+            id: 1,
+            name: 'Ommabop',
+            selected: false
+          },
+          {
+            id: 2,
+            name: 'Chegirmali',
+            selected: false
+          },
+          {
+            id: 2,
+            name: 'Yangi',
+            selected: false
+          },
+        ],
       },
     ],
   }),

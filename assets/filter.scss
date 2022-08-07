@@ -5,6 +5,8 @@
   border-radius: 10px;
   padding: 16px;
   margin-bottom: 100px;
+  height: auto;
+  flex-grow: 0 !important;
   &__body {
     margin-top: 16px;
   }
@@ -47,4 +49,49 @@
   .v-text-field > .v-input__control > .v-input__slot::before, .v-text-field > .v-input__control > .v-input__slot::after {
     display: none;
   }
+  .v-slider__track-container {
+    height: 6px;
+  }
+  &__btn {
+    padding: 15px 92px;
+    background: #07D271;
+    box-shadow: 0 12px 24px rgba(0, 205, 107, 0.3);
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 120%;
+    text-align: center;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+    margin-top: 40px;
+  }
 }
+.result__body {
+  width: 100%;
+  margin-bottom: 100px;
+  .v-text-field > .v-input__control > .v-input__slot::before, .v-text-field > .v-input__control > .v-input__slot::after {
+    display: none;
+  }
+}
+.sort-type {
+  max-width: 250px;
+  .v-input {
+    padding: 8px !important;
+    background-color: #F7FCFC;
+    border-radius: 5px;
+  }
+  .v-label {
+    color: #232730 !important;
+    font-size: 15px;
+  }
+}
+
+.sort {
+  display: flex;
+  justify-content: space-between;
+}
+.filters {
+  flex-grow: 0 !important;
+  height: max-content;
+}
+

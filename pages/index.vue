@@ -2,7 +2,7 @@
   <div class="container">
     <slider />
     <v-flex row wrap xs12 justify-space-between align-center>
-      <h1 class="headers">Sara kategoriyalar</h1>
+      <h1 class="headers mt-0">Sara kategoriyalar</h1>
       <a href="#" class="show__more">
         Barchasini ko’rsatish
         <v-icon>mdi-chevron-right</v-icon>
@@ -105,7 +105,7 @@
     </v-row>
 
     <div class="sale">
-      <div class="sale__title">Chegirmali mahsulotar</div>
+      <h1 class="headers">Chegirmali mahsulotar</h1>
       <v-row class="sale__products">
         <v-col
           v-for="(p, idx) in new_products"

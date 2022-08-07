@@ -2,7 +2,7 @@
   <v-card class="product__card">
     <v-card-title elevation="0">
       <span v-if="card.is_new" class="new"> Yangi </span>
-      <v-btn icon @click="toogleFavourites">
+      <v-btn icon @click="toggleFavourites">
         <v-icon v-if="!card.is_favorite" color="#F8C018">
           mdi-heart-outline
         </v-icon>
@@ -19,7 +19,9 @@
             {{ card.rating }}
           </span>
         </div>
-        <p class="product__name">{{ card.product_name }}</p>
+        <nuxt-link :to="`/product/${card.product_name}`" class="product-name">
+          <p class="product__name">{{ card.product_name }}</p>
+        </nuxt-link>
         <p class="cost">
           {{ card.cost }} <span> {{ card.currency }} / {{ card.unit }} </span>
         </p>
@@ -53,7 +55,7 @@ export default {
   },
 
   methods: {
-    toogleFavourites() {
+    toggleFavourites() {
       this.card.is_favorite = !this.card.is_favorite
     },
   },
@@ -61,6 +63,16 @@ export default {
 </script>
 
 <style lang="scss">
+.product-name {
+  text-decoration: none;
+  transition: color linear .2s;
+  color: red !important;
+
+  &:hover {
+    background-color: #000;
+    color: #00cd6b !important;
+  }
+}
 .product__card {
   border-radius: 10px !important;
   border: 1px solid $secondary_line !important;
@@ -155,6 +167,10 @@ export default {
       line-height: 120%;
       color: $black;
       margin: 10px 0;
+      transition: color .2s linear 0s;
+      &:hover {
+        color: #00cd6b;
+      }
     }
 
     .cost {

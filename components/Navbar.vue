@@ -1,8 +1,10 @@
 <template>
   <nav class="navbar">
-    <div class="navbar__top container" mb-5>
+    <div class="navbar__top container">
       <div class="left">
-        <img src="/logo.svg" alt="" class="logo left" />
+        <nuxt-link to="/">
+          <img src="/logo.svg" alt="" class="logo left mr-8" />
+        </nuxt-link>
         <div class="search">
           <v-text-field
             prepend-icon="mdi-magnify"
@@ -84,7 +86,6 @@
               <v-list-item
                 v-for="(item, i) in categories"
                 :key="i"
-                @click="test"
               >
                 <v-list-item-content>
                   <v-list-item-title>
@@ -188,7 +189,7 @@ export default {
         },
         {
           name: 'Mevalar',
-          url: '#',
+          url: '/categories/mevalar',
         },
         {
           name: 'Sabzavotlar',
@@ -284,9 +285,6 @@ export default {
   },
 
   methods: {
-    test() {
-      console.log('test')
-    },
   },
 }
 </script>

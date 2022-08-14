@@ -11,7 +11,7 @@
           <ul class="social">
             <li>
               <a href="#"> <img src="/icons/facebook.svg" alt=""></a>
-            </li> 
+            </li>
             <li>
               <a href="#"> <img src="/icons/linkedin.svg" alt=""></a>
             </li>
@@ -70,7 +70,7 @@
         </v-flex>
       </v-layout>
       <hr>
-       <p style="margin: 30px 0 0"> © 2022, Barcha huquqlar himoyalangan </p>
+       <p class="mt-8 text-center"> © 2022, Barcha huquqlar himoyalangan </p>
     </div>
   </v-footer>
 </template>

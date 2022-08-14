@@ -1,5 +1,5 @@
 .product {
-  &__item{
+  &__item {
     margin-bottom: 8px;
     cursor: pointer;
     border-radius: 10px;
@@ -7,23 +7,27 @@
     width: 88px;
     height: 65px;
     background: #F5F6F7;
+
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center;
     }
+
     &.active {
       border: 1px solid #232730;
     }
   }
+
   &__main {
     width: min(100%, 450px);
     height: 354px;
     background: #F5F6F7;
     margin-left: 15px;
     border-radius: 10px;
-    img  {
+
+    img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -37,6 +41,7 @@
     line-height: 120%;
     color: #A8A8A8;
     margin-bottom: 10px;
+
     span {
       font-weight: 400;
       font-size: 16px;
@@ -68,6 +73,7 @@
     font-size: 24px;
     line-height: 120%;
     color: #232730;
+
     span {
       font-weight: 400;
       font-size: 16px;
@@ -90,14 +96,17 @@
     color: #232730;
   }
 }
+
 aside {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   &:first-child {
     border-radius: 12px;
-    border: 1px solid $base_color;
+    //border: 1px solid $base_color;
     overflow: hidden;
+
     .v-btn {
       width: 42px;
       height: 42px;
@@ -105,6 +114,7 @@ aside {
       background: $base_color;
       color: $white;
     }
+
     span {
       display: inline-block;
       margin: 0 5px;
@@ -124,9 +134,69 @@ aside {
     }
   }
 }
+
 .sub_text {
   font-size: 14px;
   line-height: 140%;
   color: #000000;
 }
 
+.product-place {
+  &__title {
+    div {
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 110%;
+      color: #A8A8A8;
+      cursor: pointer;
+
+      &.active {
+        color: #232730;
+      }
+    }
+  }
+
+  &__owner, &__size, &__amount {
+    margin-top: 30px;
+    @include title;
+
+    span {
+      @include subtitle;
+    }
+  }
+}
+
+.look-like {
+  margin-bottom: 160px !important;
+}
+
+.product-comment {
+  &__count {
+    font-size: 14px;
+    line-height: 17px;
+    color: #555555;
+
+    > .more {
+      color: #07D271;
+    }
+
+  }
+  &__block--text {
+    font-size: 14px;
+    line-height: 17px;
+    color: #555555;
+  }
+}
+
+.add {
+  &__comment--title {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 110%;
+    color: #232730;
+  }
+
+  &__comment--star {
+    margin: 22px 0;
+  }
+}

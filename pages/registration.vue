@@ -1,5 +1,5 @@
 <template>
-  <div class="login d-flex flex-column align-center mt-5">
+  <div class="register d-flex flex-column align-center mt-5">
     <img src="/logo.svg" alt="logo" />
     <div class="login__body elevation-5 mt-8 pa-4 px-6">
       <div class="login__title text-h6 text-center mb-5 mt-5">
@@ -62,8 +62,8 @@
 
       <div class="text-center my-5">Allaqachon ro'yxatdan o'tganmisiz ?</div>
       <v-row justify="center">
-        <v-btn outlined color="green" class="text-center mb-5 mt-5" dark>
-          Ro'yxatdan o'tish
+        <v-btn outlined color="green"  to="/login" class="text-center mb-5 mt-5" dark>
+          Kirish
         </v-btn>
       </v-row>
     </div>
@@ -98,28 +98,29 @@ export default {
 </script>
 
 <style lang="scss">
-.connect {
-  padding: 13px 30px;
-  background: #00cd6b;
-  box-shadow: 0px 12px 24px rgba(0, 205, 107, 0.3);
-  border-radius: 10px;
-  text-decoration: none;
-  color: $white;
-  font-weight: 700;
-  font-size: 16px;
-  color: #fff !important;
-  display: block;
-  text-align: center;
-}
-.login {
-  margin-bottom: 50px;
-  &__body {
-    border-radius: 15px;
-    background: #fff;
-    width: min(100%, 770px);
+.register {
+  .connect {
+    padding: 13px 30px;
+    background: #00cd6b;
+    box-shadow: 0 12px 24px rgba(0, 205, 107, 0.3);
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff !important;
+    display: block;
+    text-align: center;
   }
-  &__forgod {
-    cursor: pointer;
+  .login {
+    margin-bottom: 50px;
+    &__body {
+      border-radius: 15px;
+      background: #fff;
+      width: min(100%, 770px);
+    }
+    &__forgod {
+      cursor: pointer;
+    }
   }
 }
 </style>

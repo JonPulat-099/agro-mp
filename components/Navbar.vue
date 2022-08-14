@@ -3,7 +3,7 @@
     <div class="navbar__top container">
       <div class="left">
         <nuxt-link to="/">
-          <img src="/logo.svg" alt="" class="logo left mr-8" />
+          <img src="/logo.svg" alt="" class="logo left mr-8"/>
         </nuxt-link>
         <div class="search">
           <v-text-field
@@ -17,7 +17,7 @@
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on" class="user">
-              <img src="/icons/user.svg" alt="user icon" />
+              <img src="/icons/user.svg" alt="user icon"/>
             </div>
           </template>
           <v-card class="mx-auto rounded-lg cabinet">
@@ -32,22 +32,26 @@
             </v-list>
           </v-card>
         </v-menu>
-        <button class="favorites">
-          <v-badge color="green" content="6">
-            <img src="/icons/heart.svg" alt="" />
-          </v-badge>
-        </button>
-        <button class="bags">
-          <v-badge color="green" content="6">
-            <img src="/icons/bag.svg" alt="" />
-          </v-badge>
-        </button>
+        <nuxt-link to="/favorite-products">
+          <button class="favorites">
+            <v-badge color="green" content="6">
+              <img src="/icons/heart.svg" alt=""/>
+            </v-badge>
+          </button>
+        </nuxt-link>
+        <nuxt-link to="/basket">
+          <button class="bags">
+            <v-badge color="green" content="6">
+              <img src="/icons/bag.svg" alt=""/>
+            </v-badge>
+          </button>
+        </nuxt-link>
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on" class="langs">
-              <img src="/icons/uzb.svg" alt="" />
+              <img src="/icons/uzb.svg" alt=""/>
               <span> Uz </span>
-              <v-icon> mdi-chevron-down </v-icon>
+              <v-icon> mdi-chevron-down</v-icon>
             </div>
           </template>
           <v-card class="mx-auto rounded-lg change__lang">
@@ -56,7 +60,7 @@
                 <v-list-item v-for="(item, i) in langs" :key="i">
                   <v-list-item-content>
                     <v-list-item-title>
-                      <img :src="`/icons/${item}.svg`" alt="" />
+                      <img :src="`/icons/${item}.svg`" alt=""/>
                       {{ item }}
                     </v-list-item-title>
                   </v-list-item-content>
@@ -65,16 +69,17 @@
             </v-list>
           </v-card>
         </v-menu>
-        <nuxt-link to="" class="connect"> Bog'lanish </nuxt-link>
+        <nuxt-link to="" class="connect"> Bog'lanish</nuxt-link>
       </div>
     </div>
+
     <div class="navbar__bottom container">
       <v-menu offset-y content-class="category__menu">
         <template v-slot:activator="{ on, attrs }">
           <div v-bind="attrs" v-on="on" class="category">
-            <img src="/icons/category.svg" alt="" />
+            <img src="/icons/category.svg" alt=""/>
             <span> Barcha kategoriya </span>
-            <v-icon> mdi-chevron-down </v-icon>
+            <v-icon> mdi-chevron-down</v-icon>
           </div>
         </template>
         <v-card class="categories__list" outlined>
@@ -103,7 +108,8 @@
                         >
                           {{ item.name }}
                           <v-icon v-if="item.is_subCategory"
-                            >mdi-chevron-right</v-icon
+                          >mdi-chevron-right
+                          </v-icon
                           >
                         </div>
                       </template>
@@ -119,7 +125,8 @@
                                   {{ item.name }}
                                 </v-list-item-title>
                               </v-list-item-content>
-                            </v-list-item></v-list-item-group
+                            </v-list-item>
+                          </v-list-item-group
                           >
                         </v-list>
                       </v-card>
@@ -142,7 +149,7 @@
         <template v-slot:activator="{ on, attrs }">
           <div v-bind="attrs" v-on="on" class="about">
             <span> Biz Haqimizda </span>
-            <v-icon> mdi-chevron-down </v-icon>
+            <v-icon> mdi-chevron-down</v-icon>
           </div>
         </template>
         <v-card class="rounded-lg about__us">
@@ -152,7 +159,7 @@
                 v-for="(item, i) in about"
                 :key="i"
                 link
-                to="item.url"
+                :to="item.url"
               >
                 <v-list-item-content>
                   <v-list-item-title>
@@ -173,8 +180,8 @@ export default {
   data() {
     return {
       user: [
-        { item: 'Sign In', link: '/login' },
-        { item: 'Sign Up', link: '/registration' },
+        {item: 'Sign In', link: '/login'},
+        {item: 'Sign Up', link: '/registration'},
       ],
       langs: ['ru', 'en'],
       selected_category: '',
@@ -203,8 +210,8 @@ export default {
 
       about: [
         {
-          name: 'lorem ipsum',
-          url: '#',
+          name: 'Profile',
+          url: '/profile',
         },
         {
           name: 'lorem ipsum',
@@ -283,9 +290,15 @@ export default {
       ],
     }
   },
-
-  methods: {
+  computed: {
+    number() {
+      return this.$store.state.number;
+    }
   },
+  methods: {},
+  mounted() {
+    this.$store.commit('setNumber', 34)
+  }
 }
 </script>
-<style lang="scss" src="@/assets/navbar.scss"></style>
+<style lang="scss" src="assets/navbar.scss"></style>

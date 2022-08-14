@@ -40,3 +40,49 @@
     }
   }
 }
+
+@mixin title {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 120%;
+  color: #4F4F4F;
+  display: flex;
+
+  > div {
+    width: 144px;
+    margin-right: 20px;
+  }
+}
+@mixin subtitle {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  color: #232730;
+}
+@mixin trs {
+  transition: all linear .2s;
+}
+
+@mixin trash {
+  cursor: pointer;
+  margin-left: 20px;
+  width: 45px;
+  height: 35px;
+  background: #FF6666;
+  border: 1px solid #FF6666;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include trs;
+  &:hover {
+    box-shadow: 0 6px 16px rgba(#FF6666, .5);
+  }
+}
+@mixin mainTitle {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 44px;
+  color: #232730;
+
+}

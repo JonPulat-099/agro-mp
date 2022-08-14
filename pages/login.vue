@@ -33,7 +33,7 @@
         color="green"
         v-model="user_login.remember_me"
       />
-      <nuxt-link to="" class="connect"> Tadiqlash </nuxt-link>
+      <nuxt-link to="/" class="connect"> Tadiqlash </nuxt-link>
       <v-row class="mt-4 mb-6" align="center">
         <v-divider />
         <div class="mx-4 mt-2 grey--text">Yoki</div>
@@ -46,7 +46,7 @@
       </v-row>
       <div class="text-center my-5">Sizda akkaunt mavjud emesmi ?</div>
       <v-row justify="center">
-        <v-btn outlined color="green" class="text-center mb-5 mt-5" dark>
+        <v-btn outlined color="green" to="/registration" class="text-center mb-5 mt-5" dark>
           Ro'yxatdan o'tish
         </v-btn>
       </v-row>
@@ -69,28 +69,29 @@ export default {
 </script>
 
 <style lang="scss">
-.connect {
-  padding: 13px 30px;
-  background: #00cd6b;
-  box-shadow: 0px 12px 24px rgba(0, 205, 107, 0.3);
-  border-radius: 10px;
-  text-decoration: none;
-  color: $white;
-  font-weight: 700;
-  font-size: 16px;
-  color: #fff !important;
-  display: block;
-  text-align: center;
-}
 .login {
-  margin-bottom: 50px;
-  &__body {
-    border-radius: 15px;
-    background: #fff;
-    min-width: 420px;
+  .connect {
+    padding: 13px 30px;
+    background: #00cd6b;
+    box-shadow: 0 12px 24px rgba(0, 205, 107, 0.3);
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff !important;
+    display: block;
+    text-align: center;
   }
-  &__forgod {
-    cursor: pointer;
+  .login {
+    margin-bottom: 50px;
+    &__body {
+      border-radius: 15px;
+      background: #fff;
+      min-width: 420px;
+    }
+    &__forgod {
+      cursor: pointer;
+    }
   }
 }
 </style>

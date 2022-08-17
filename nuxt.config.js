@@ -20,7 +20,10 @@ export default {
   css: ['@/assets/mixins.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/v-mask.js'],
+  plugins: [
+    '~/plugins/v-mask.js',
+    '~/plugins/mixins.js'
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -36,16 +39,47 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
+    '@nuxtjs/auth-next',
+    '@nuxtjs/toast',
   ],
 
-  styleResources: {
-    scss: ['@/assets/mixins.scss'],
+  toast: {
+    position: 'top-center'
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/api/auth',
+            method: 'post',
+            propertyName: 'token',
+          },
+          logout: false,
+          user: false,
+        },
+      },
+    },
+    redirect: {
+      login: '/login',
+      logout: '/',
+      callback: '/',
+      home: '/',
+    },
+  },
+  router: {
+    middleware: ['auth', 'isAuth'],
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: 'http://127.0.0.1:2332',
+  },
+
+  styleResources: {
+    scss: ['@/assets/mixins.scss'],
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

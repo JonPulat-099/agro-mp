@@ -1,77 +1,96 @@
 <template>
-  <div class="register d-flex flex-column align-center mt-5">
-    <img src="/logo.svg" alt="logo" />
-    <div class="login__body elevation-5 mt-8 pa-4 px-6">
-      <div class="login__title text-h6 text-center mb-5 mt-5">
-        Ro'yxatdan o'tish
-      </div>
-      <v-row>
-        <v-col>
-          <v-text-field
-            outlined
-            label="Ismingizni kiriting"
-            v-model="user_register.name"
-          />
-          <v-text-field
-            label="Telefon nomer"
-            type="text"
-            hide-spin-buttons
-            outlined
-            placeholder="(99) 403-68-28"
-            prefix="+998"
-            v-mask="'(##) ###-##-##'"
-            v-model="user_register.phone"
-          ></v-text-field>
+  <v-form ref="regForm">
+    <div class="register d-flex flex-column align-center mt-5">
+      <img src="/logo.svg" alt="logo" />
+      <div class="login__body elevation-5 mt-8 pa-4 px-6">
+        <div class="login__title text-h6 text-center mb-5 mt-5">
+          Ro'yxatdan o'tish
+        </div>
+        <v-row>
+          <v-col>
+            <v-text-field
+              outlined
+              label="Ismingizni kiriting"
+              v-model="user_register.first_name"
+              :rules="[formRules.required]"
+              validate-on-blur
+            />
+            <v-text-field
+              label="Telefon nomer"
+              type="text"
+              hide-spin-buttons
+              outlined
+              placeholder="(99) 403-68-28"
+              prefix="+998"
+              v-mask="'(##) ###-##-##'"
+              v-model="user_register.phone"
+              :rules="[formRules.required]"
+            ></v-text-field>
 
-          <v-text-field
-            label="Parolni kiriting"
-            :type="eye_pass ? 'password' : 'text'"
-            :append-icon="eye_pass ? 'mdi-eye' : 'mdi-eye-off'"
-            outlined
-            hide-details
-            v-model="user_register.password"
-            @click:append="eye_pass = !eye_pass"
-          ></v-text-field>
-        </v-col>
-        <v-col>
-          <v-text-field
-            outlined
-            label="Familiyangizni kiriting"
-            v-model="user_register.lastname"
-          />
-          <v-text-field
-            outlined
-            label="Emailni kiriting"
-            v-model="user_register.email"
-          />
-          <v-select
-            label="Hududni tanlang*"
-            outlined
-            :items="regions"
-            v-model="user_register.region"
-          />
-        </v-col>
-      </v-row>
+            <v-text-field
+              label="Parolni kiriting"
+              :type="eye_pass ? 'password' : 'text'"
+              :append-icon="eye_pass ? 'mdi-eye' : 'mdi-eye-off'"
+              outlined
+              hide-details
+              v-model="user_register.password"
+              @click:append="eye_pass = !eye_pass"
+              :rules="[formRules.required, formRules.password]"
+            ></v-text-field>
+          </v-col>
+          <v-col>
+            <v-text-field
+              outlined
+              label="Familiyangizni kiriting"
+              v-model="user_register.last_name"
+              :rules="[formRules.required]"
+            />
+            <v-text-field
+              outlined
+              label="Login kiriting"
+              v-model="user_register.login"
+              :rules="[formRules.required, formRules.create_login]"
+            />
+            <v-select
+              label="Hududni tanlang*"
+              outlined
+              :items="regions"
+              v-model="user_register.region"
+              :rules="[formRules.required]"
+            />
+          </v-col>
+        </v-row>
 
-      <v-checkbox
-        label="Saytdan foydalanish shartlariga roziman*"
-        color="green"
-        v-model="user_register.remember_me"
-      />
-      <nuxt-link to="" class="connect"> Ro'yxatdan o'ting </nuxt-link>
-
-      <div class="text-center my-5">Allaqachon ro'yxatdan o'tganmisiz ?</div>
-      <v-row justify="center">
-        <v-btn outlined color="green"  to="/login" class="text-center mb-5 mt-5" dark>
-          Kirish
+        <v-checkbox
+          label="Saytdan foydalanish shartlariga roziman*"
+          color="green"
+          v-model="user_register.remember_me"
+        />
+        <v-btn @click="userRegistration" color="green" dark>
+          Ro'yhatdan o'tish
         </v-btn>
-      </v-row>
+        <!-- <nuxt-link to="" class="connect"> Ro'yxatdan o'ting </nuxt-link> -->
+
+        <div class="text-center my-5">Allaqachon ro'yxatdan o'tganmisiz ?</div>
+        <v-row justify="center">
+          <v-btn
+            outlined
+            color="green"
+            to="/login"
+            class="text-center mb-5 mt-5"
+            dark
+          >
+            Kirish
+          </v-btn>
+        </v-row>
+      </div>
     </div>
-  </div>
+  </v-form>
 </template>
 
 <script>
 export default {
+  auth: false, 
   data: () => ({
     regions: [
       'Toshkent',
@@ -84,16 +103,36 @@ export default {
     ],
     eye_pass: true,
     user_register: {
-      email: '',
-      region: '',
-      lastname: '',
-      phone: '',
+      first_name: '',
+      last_name: '',
+      login: '',
       password: '',
-      name: '',
+      phone: '',
+      region: '',
       offerta: false,
     },
   }),
-  methods: {},
+  methods: {
+    async userRegistration() {
+      if (this.$refs.regForm.validate()) {
+        try {
+          const phone =
+            '998' + String(this.user_register.phone).replaceAll(/[-\ ()]/g, '')
+          const resp = (
+            await this.$axios.$post('/api/register', {
+              ...this.user_register,
+              phone,
+            })
+          )
+          if (resp.state === "success") {
+            this.$router.push("/login")
+          } else {
+            this.getFlash("error", resp.text)
+          }
+        } catch (error) {}
+      }
+    },
+  },
 }
 </script>
 

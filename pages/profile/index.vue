@@ -79,7 +79,7 @@
           <div class="profile__place">
             <div class="profile__place--title d-flex justify-space-between">
               <div>Boshqa ma’lumotlar</div>
-              <v-btn color="amber"elevation="0" dark small><v-icon size="18">mdi-pencil</v-icon>O’zgartirish</v-btn>
+              <v-btn color="amber" elevation="0" dark small><v-icon size="18">mdi-pencil</v-icon>O’zgartirish</v-btn>
             </div>
             <v-row class="mt-8">
               <v-col>

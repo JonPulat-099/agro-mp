@@ -13,7 +13,7 @@
         placeholder="(99) 403-68-28"
         hide-details
         prefix="+998"
-        v-mask="'(##) ###-##-##'"
+        v-mask="'(##)###-##-##'"
         v-model="user_login.phone"
       ></v-text-field>
       <div class="green--text text-right text-caption login__forgod mt-4 mb-2">
@@ -33,7 +33,8 @@
         color="green"
         v-model="user_login.remember_me"
       />
-      <nuxt-link to="/" class="connect"> Tadiqlash </nuxt-link>
+      <v-btn @click="userAuth" color="green" dark> Tasdiqlash </v-btn>
+      <!-- <nuxt-link to="/" class="connect"> Tadiqlash </nuxt-link> -->
       <v-row class="mt-4 mb-6" align="center">
         <v-divider />
         <div class="mx-4 mt-2 grey--text">Yoki</div>
@@ -46,7 +47,13 @@
       </v-row>
       <div class="text-center my-5">Sizda akkaunt mavjud emesmi ?</div>
       <v-row justify="center">
-        <v-btn outlined color="green" to="/registration" class="text-center mb-5 mt-5" dark>
+        <v-btn
+          outlined
+          color="green"
+          class="text-center mb-5 mt-5"
+          dark
+          to="/registration"
+        >
           Ro'yxatdan o'tish
         </v-btn>
       </v-row>
@@ -64,7 +71,29 @@ export default {
       remember_me: false,
     },
   }),
-  methods: {},
+  methods: {
+    async userAuth() {
+      try {
+        const phone = String(this.user_login.phone).replaceAll(/[-\ ()]/g, '')
+        let resp = (await this.$auth.loginWith('local', {
+          data: {
+            phone: '998'+ phone,
+            password: this.user_login.password
+          }
+        })).data
+        if (resp.state === "success" && resp.data?.token) {
+          this.$auth.setUserToken(resp.data.token)
+          this.$store.commit("cabinet/setUserInfo", resp.data.info)
+          this.$router.push("/profile")
+        }
+        else {
+          alert("Something went Error")
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  },
 }
 </script>
 

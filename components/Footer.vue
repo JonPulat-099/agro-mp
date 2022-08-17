@@ -3,10 +3,9 @@
     <div class="container footer">
       <v-layout row wrap>
         <v-flex lg3 xs12>
-          <img src="/logo.svg" alt="" class="logo"/>
+          <img src="/logo_new.svg" alt="" class="logo"/>
           <p class="slogan">
-            Biz AGROW hamyonbop va sifatli mahsulotlar O’zbekiston bo’yicha
-            mahsulotlarni sotadigan onlany do’kon hisoblanadi.
+            {{ $t('footer.main_title') }}
           </p>
           <ul class="social">
             <li>
@@ -24,7 +23,7 @@
           </ul>
         </v-flex>
         <v-flex lg3 xs12>
-          <h3>Foydali linklar</h3>
+          <h3>{{ $t('footer.links.title') }}</h3>
           <ul>
             <li v-for="(l, i) in usefull_links" :key="i">
               <a :href="l.url">{{ l.name }}</a>
@@ -32,7 +31,7 @@
           </ul>
         </v-flex>
         <v-flex lg3 xs12>
-          <h3>Yodam markazi</h3>
+          <h3>{{ $t('footer.links.about') }}</h3>
           <ul>
             <li v-for="(l, i) in help_center" :key="i">
               <a :href="l.url">{{ l.name }}</a>
@@ -40,37 +39,37 @@
           </ul>
         </v-flex>
         <v-flex lg3 xs12>
-          <h3>Akkaunt</h3>
+          <h3>{{ this.$t('footer.account.title') }}</h3>
           <ul>
             <li>
               <v-icon color="#2EAF7C">mdi-map-marker-radius-outline</v-icon>
-              <b> Manzil: </b>
-              15 Amir Temur k, Tashkent , Uzb
+              <b class="mr-1"> {{ this.$t('footer.keys.address') }}: </b>
+              15 A. Temur, Tashkent , Uzb
             </li>
             <li>
               <a href="">
                 <v-icon color="#2EAF7C">mdi-phone-outline</v-icon>
-                <b>Telefon raqam:</b>
+                <b class="mr-1">{{ this.$t('footer.keys.phone') }}:</b>
                 +998 90 123 45 67
               </a>
             </li>
             <li>
               <a href="">
                 <v-icon color="#2EAF7C">mdi-email-outline</v-icon>
-                <b>Email:</b>
+                <b class="mr-1">{{ this.$t('footer.keys.email') }}:</b>
                 Agrow@aloqa.com
               </a>
             </li>
             <li>
               <v-icon color="#2EAF7C">mdi-clock-time-eight-outline</v-icon>
-              <b>Ish vaqtlari:</b>
-              24/7, Dushanba - Yakshanba
+              <b class="mr-1">{{ this.$t('footer.keys.clock') }}:</b>
+              24/7
             </li>
           </ul>
         </v-flex>
       </v-layout>
       <hr>
-       <p class="mt-8 text-center"> © 2022, Barcha huquqlar himoyalangan </p>
+       <p class="mt-8 text-center"> © 2022, {{ this.$t('footer.license') }} </p>
     </div>
   </v-footer>
 </template>
@@ -82,57 +81,57 @@ export default {
     return {
       usefull_links: [
         {
-          name: 'Biz haqimizda',
+          name: this.$t('footer.links.about'),
           url: '#',
         },
         {
-          name: 'Kontaktlar',
+          name: this.$t('footer.links.contact'),
           url: '#',
         },
         {
-          name: 'Kelishuvlar',
+          name: this.$t('footer.links.deal'),
           url: '#',
         },
         {
-          name: 'Yangi mahsulotlar',
+          name: this.$t('footer.links.new_product'),
           url: '#',
         },
         {
-          name: 'Sevimli mahsulotlar',
+          name: this.$t('footer.links.favorite'),
           url: '#',
         },
         {
-          name: 'Yetkazib berish tafsilotlari',
+          name: this.$t('footer.links.delivery'),
           url: '#',
         },
       ],
       help_center: [
         {
-          name: 'To’lovlar',
+          name: this.$t('footer.help_center.payment'),
           url: '#',
         },
         {
-          name: "To'lovni qaytarish",
+          name: this.$t('footer.help_center.pay_revers'),
           url: '#',
         },
         {
-          name: 'Hisob-kitob ',
+          name: this.$t('footer.help_center.calc'),
           url: '#',
         },
         {
-          name: 'Yetkazib berish',
+          name: this.$t('footer.help_center.delivery'),
           url: '#',
         },
         {
-          name: 'Buyurtmani kuzatish',
+          name: this.$t('footer.help_center.view_delivery'),
           url: '#',
         },
         {
-          name: 'Tez beriladigan savollar',
+          name: this.$t('footer.help_center.more_question'),
           url: '#',
         },
         {
-          name: 'Maxfiylik siyosati',
+          name: this.$t('footer.help_center.secure'),
           url: '#',
         },
       ],
@@ -141,5 +140,5 @@ export default {
 }
 </script>
 
-<style lang="scss" src="@/assets/footer.scss"></style>
+<style lang="scss" src="assets/footer.scss"></style>
 

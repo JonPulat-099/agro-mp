@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button :class="status" @click="click">{{ text }}</button>
+    <button :class="status" @click="click()">{{ text }}</button>
   </div>
 </template>
 
@@ -10,6 +10,7 @@ export default {
   props: {
     click: {
       type: Function,
+      required: false
     },
     status: {
       type: String,

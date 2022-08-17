@@ -36,6 +36,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
+    "@nuxtjs/i18n",
   ],
 
   styleResources: {
@@ -46,6 +47,44 @@ export default {
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: '/',
+  },
+
+  i18n: {
+    useCookie: true,
+    alwaysRedirect: false,
+    detectBrowserLanguage: false,
+    strategy: "prefix",
+    locales: [
+      {
+        code: "ru",
+        iso: "ru-RU",
+        name: "Russian",
+        file: "ru/index.js",
+        icon: "/ru.svg",
+        title: "Ru"
+      },
+      {
+        code: "uz",
+        iso: "uz-UZ",
+        name: "O'zbek",
+        file: "uz/index.js",
+        icon: "/uz.svg",
+        title: "Uz"
+      },
+      {
+        code: "en",
+        iso: "en-US",
+        name: "English",
+        file: "en/index.js",
+        icon: "/en.svg",
+        title: "En"
+      }
+    ],
+    lazy: true,
+    seo: false,
+    langDir: "locales/",
+    defaultLocale: "uz",
+    parsePages: false
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -61,17 +100,17 @@ export default {
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
-          success: colors.green.accent3,
+          success: colors.green.accent3
         },
 
         light: {
-          green: '#F8C018',
-        },
-      },
+          green: '#F8C018'
+        }
+      }
     },
     icons: {
-      iconfont: 'mdiSvg', // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4' || 'faSvg'
-    },
+      iconfont: 'mdiSvg' // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4' || 'faSvg'
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

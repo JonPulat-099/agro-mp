@@ -18,8 +18,8 @@
       </v-col>
       <v-col>
         <div class="product__info">
-          <div class="product__info--id">Mahsulot ID raqami: <span>324256</span></div>
-          <div class="product__info--market">Do’kon raqami: <span>B-124</span></div>
+          <div class="product__info--id">{{ $t('product_info.product_id') }} <span>324256</span></div>
+          <div class="product__info--market">{{ $t('product_info.market_number') }} <span>B-124</span></div>
           <div class="product__info--title">Qizil Olma</div>
           <s class="product__info--old-price">18 000 so’m / kg</s>
           <div class="d-flex justify-space-between align-center">
@@ -65,7 +65,7 @@
                 <v-icon v-else color="#F8C018">mdi-heart</v-icon>
               </v-btn>
               <div class="sub_text">
-                Sevimlilar qatoriga qo’shish
+                {{ $t('btns.add_to_favorite') }}
               </div>
             </div>
             <div class="d-flex align-center">
@@ -73,14 +73,14 @@
                 <v-icon color="#F8C018">mdi-share-variant-outline</v-icon>
               </v-btn>
               <div class="sub_text">
-                Ulashish
+                {{ $t('btns.share') }}
               </div>
             </div>
           </div>
 
           <div class="d-flex justify-space-between mb-6">
-            <Button status="warning_btn" :text="'Savatga qo’shish'"/>
-            <Button status="success_btn" :text="'Hoziroq sotib olish'"/>
+            <Button status="warning_btn" :text="$t('btns.add_to_cart')"/>
+            <Button status="success_btn" :text="$t('btns.buy_now')"/>
           </div>
         </div>
       </v-col>
@@ -88,32 +88,32 @@
     <v-divider class="my-5"/>
     <div class="product-place">
       <div class="product-place__title d-flex ">
-        <div :class="!info_tab ?  'active' : ''" @click="info_tab = !info_tab">Mahsulot tavsifi</div>
-        <div :class="info_tab ?  'active ml-7' : 'ml-7'" @click="info_tab = !info_tab">Izohlar</div>
+        <div :class="!info_tab ?  'active' : ''" @click="info_tab = !info_tab">{{ $t('titles.product_info') }}</div>
+        <div :class="info_tab ?  'active ml-7' : 'ml-7'" @click="info_tab = !info_tab">{{ $t('titles.comment') }}</div>
       </div>
       <div v-if="!info_tab">
         <div class="product-place__owner">
-          <div>Mahsulot egasi:</div>
+          <div>{{ $t('product_info.product_owner') }}</div>
           <span>“Po’latjon” MCHJ</span>
         </div>
         <div class="product-place__size">
-          <div>O'lchov:</div>
+          <div>{{ $t('product_info.size') }}</div>
           <span></span>
         </div>
         <div class="product-place__amount">
-          <div>Miqdori:</div>
+          <div>{{ $t('product_info.amount') }}</div>
           <span>1 t</span>
         </div>
         <div class="product-place__amount">
-          <div>To’lov turi:</div>
+          <div>{{ $t('product_info.payment_type') }}</div>
           <span>Naqd pulda, Plastik karta orqali</span>
         </div>
         <div class="product-place__amount">
-          <div>Yetkazib berish:</div>
+          <div>{{ $t('product_info.delivery') }}</div>
           <span>Haridorga yetkazib berish</span>
         </div>
         <div class="product-place__amount">
-          <div>Manzil:</div>
+          <div>{{ $t('product_info.address') }}</div>
           <span>Toshkent viloyati, Piskent tumani</span>
         </div>
       </div>
@@ -122,8 +122,8 @@
         <v-row>
           <v-col>
             <div class="product-comment__count d-flex justify-space-between align-center mt-8">
-              <div>10 ta izohlar</div>
-              <div class="more">Barcha izohlarni ko’rish</div>
+              <div>10 {{ $t('product_info.count_comment') }}</div>
+              <div class="more">{{ $t('product_info.all_comments') }}</div>
             </div>
             <div class="product-comment__comments">
               <div class="product-comment__block mt-8" v-for="(comment,idx) in comments" :key="idx">
@@ -169,7 +169,7 @@
           <v-col>
             <div class="add">
               <div class="add__comment d-flex align-center flex-column">
-                <div class="add__comment--title">Mahsulotga baho bering?</div>
+                <div class="add__comment--title">{{ $t('titles.product_rating') }}</div>
                 <div class="add__comment--star">
                   <v-rating
                     v-model="comment.rating"
@@ -178,26 +178,26 @@
                     hover
                     color="orange"
                     large
-                  ></v-rating>
+                  />
                 </div>
                 <div>
                   <v-textarea
                     style="min-width: 350px;"
                     outlined
                     name=""
-                    label="Izoh qoldirish"
+                    :label="$t('btns.add_comment')"
                     value=""
                     hide-details
-                  ></v-textarea>
+                  />
                 </div>
-                <Button status="warning_btn" text="Izoh qoldirish"/>
+                <Button status="warning_btn" :text="$t('btns.add_comment')"/>
               </div>
             </div>
           </v-col>
         </v-row>
       </div>
 
-      <div class="headers">O’xshash mahsulotlar</div>
+      <div class="headers">{{ $t('titles.look_like') }}</div>
       <v-row class="sale__products look-like mb-16">
         <v-col
           v-for="(p, idx) in new_products"
@@ -357,5 +357,4 @@ export default {
 }
 </script>
 
-<style lang="scss" src="@/assets/product.scss">
-</style>
+<style lang="scss" src="assets/product.scss"></style>

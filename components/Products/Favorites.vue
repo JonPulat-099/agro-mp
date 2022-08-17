@@ -19,7 +19,7 @@
             {{ card.rating }}
           </span>
         </div>
-        <nuxt-link :to="localePath(`/product/${card.product_name}`)" class="product-name">
+        <nuxt-link :to="`/profile/favorites/${card.product_name}`" class="product-name">
           <p class="product__name">{{ card.product_name }}</p>
         </nuxt-link>
         <p class="cost">

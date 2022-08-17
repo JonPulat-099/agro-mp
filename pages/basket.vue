@@ -3,9 +3,9 @@
     <v-row class="wrap">
       <v-col cols="10" md="6" lg="8">
         <div class="d-flex justify-space-between align-center">
-          <div class="basket__title">Savat <span>(5)</span></div>
+          <div class="basket__title">{{ $t('titles.basket') }} <span>(5)</span></div>
           <div class="basket__all-remove">
-            <span>Barchasini o’chirish</span>
+            <span>{{ $t('links.all_remove') }}</span>
             <div class="basket__trash">
               <img src="~/assets/icons/trash.svg" alt="trash">
             </div>
@@ -13,10 +13,10 @@
         </div>
         <div class="basket__header">
           <ul class="d-flex align-center pl-0">
-            <li>Nomi</li>
-            <li>Kategoriya</li>
-            <li>Miqdori</li>
-            <li>Narxi</li>
+            <li>{{ $t('basket.name') }}</li>
+            <li>{{ $t('basket.category') }}</li>
+            <li>{{ $t('basket.amount') }}</li>
+            <li>{{ $t('basket.price') }}</li>
           </ul>
         </div>
         <div class="basket__product pt-5" v-for="(el, idx) in selected" :key="idx">
@@ -55,22 +55,22 @@
       </v-col>
       <v-col cols="10" md="4" lg="4">
         <div class="basket__total">
-          <div class="basket__total--title mb-5">Umumiy</div>
+          <div class="basket__total--title mb-5">{{ $t('basket.all') }}</div>
           <div class="basket__total--price mb-5 d-flex justify-space-between">
-            <div>Narx</div>
+            <div>{{ $t('basket.price') }}</div>
             <p class="pb-0 font-weight-bold">257 000 <span class="font-weight-light">so’m</span></p>
           </div>
           <div class="basket__total--price d-flex justify-space-between">
-            <div>Chegirma</div>
+            <div>{{ $t('basket.sale') }}</div>
             <p class="pb-0 red--text font-weight-bold">-16 000 <span class="font-weight-light">so’m</span></p>
           </div>
           <v-divider class="mb-5"/>
           <div class="basket__total--all mb-5 d-flex justify-space-between">
-            <div>Umumiy narx</div>
+            <div>{{ $t('basket.total') }}</div>
             <p class="pb-0 green--text font-weight-bold">247,000 <span class="font-weight-light">so’m</span></p>
           </div>
-          <nuxt-link to="/confirm">
-            <Button text="Buyurtmani tasdiqlash" status="success_btn"/>
+          <nuxt-link :to="localePath('/confirm')">
+            <Button :text="$t('btns.confirm')" status="success_btn"/>
           </nuxt-link>
         </div>
       </v-col>

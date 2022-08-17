@@ -1,6 +1,6 @@
 <template>
-  <div class="container product__favorite">
-    <div class="headers mt-2">Sevimli mahsulotlar <span>(7)</span></div>
+  <div class="container product__favorite mb-16">
+    <div class="headers mt-2">{{ $t('profile_menu.favorite') }} <span>(7)</span></div>
 
     <v-row class="sale__products look-like">
       <v-col

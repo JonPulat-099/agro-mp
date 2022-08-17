@@ -5,16 +5,16 @@
         <profile-menu/>
 
         <div class="profile__main">
-          <div class="profile__main--title">Mening buyurtmalarim</div>
-          <div class="profile__main--subtitle">Buyurtma №100</div>
+          <div class="profile__main--title">{{ $t('titles.my_orders') }}</div>
+          <div class="profile__main--subtitle">{{ $t('titles.order') }} №100</div>
           <div class="profile__main--item">
             <div class="profile__main--header">
               <ul>
-                <li>Umumiy narxi</li>
-                <li>Mahsulotlar soni</li>
-                <li>Buyurtma sanasi</li>
-                <li>Buyurtma sanasi</li>
-                <li>Manzil</li>
+                <li>{{$t('orders.common_price')}}</li>
+                <li>{{$t('orders.product_count')}}</li>
+                <li>{{$t('orders.date_of_order')}}</li>
+                <li>{{$t('orders.order_status')}}</li>
+                <li>{{$t('orders.address')}}</li>
               </ul>
               <v-divider class="mt-4 mb-5"/>
               <div class="profile__main--value">

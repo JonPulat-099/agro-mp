@@ -1,55 +1,78 @@
 <template>
   <div class="container">
-    <div class="sort">
-      <Filters />
-      <div class="result__body">
-        <div class="navbar__top d-flex mb-4">
-          <div class="filter left">
-            <div class="search">
-              <v-text-field
-                prepend-icon="mdi-magnify"
-                hide-details
-                :placeholder="$t('labels.search')"
-              />
-            </div>
-          </div>
-          <div class="sort-type">
-            <v-select
-              :label="$t('labels.sort')"
-              hide-details
-              :items="sort"
-              append-icon="mdi-chevron-down"
-              background-color="#F7FCFC"
-              dense
-              class="mt-0 pt-0"
-            />
-          </div>
-        </div>
+    <div class="profile">
+      <div class="profile__body d-flex justify-space-between">
+        <profile-menu/>
 
-        <v-row class="blocks ml-2">
-          <v-col
-            v-for="(p, i) in best_products"
-            :key="i"
-            cols="12"
-            lg="4"
-            md="6"
-            sm="12"
-          >
-            <products-card :card="p" />
-          </v-col>
-        </v-row>
+        <div class="profile__main">
+          <div class="profile__main--title d-flex justify-space-between">
+            <div>{{ $t('titles.favorites_product') }}</div>
+            <div class="remove-all"> {{ $t('titles.all_remove') }}</div>
+          </div>
+
+            <v-row class="sale__products look-like pa-0">
+              <v-col
+                v-for="(p, idx) in best_products"
+                :key="idx"
+                cols="12"
+                lg="4"
+                md="6"
+                sm="12"
+              >
+                <products-favorites :card="p" />
+              </v-col>
+            </v-row>
+
+        </div>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
+import ProfileMenu from "@/components/ProfileMenu";
 export default {
+  components: ProfileMenu,
+  name: 'Favorites',
   layout: 'main',
-  data: () => ({
-    sort: ["Ommabop", "Yangi", "Narx o'sishi bo'yicha", "Narx kamayishi bo'yicha"],
+  data:() => ({
     best_products: [
+      {
+        is_favorite: false,
+        img: '/apple.png',
+        category_name: 'Sabzavotlar',
+        rating: 4.5,
+        product_name: 'Qizil olma',
+        cost: '20 000',
+        currency: "so'm",
+        unit: 'kg',
+        order: 1,
+        count: 1,
+      },
+      {
+        is_favorite: false,
+        img: '/tomato.png',
+        category_name: 'Go`sht mahsulotlari',
+        rating: 4,
+        product_name: 'Mol go`shti',
+        cost: '68 000',
+        currency: "so'm",
+        unit: 'kg',
+        order: 1,
+        count: 1,
+      },
+      {
+        is_favorite: false,
+        img: '/meat.png',
+        category_name: 'Mevalar',
+        rating: 4.5,
+        product_name: 'Qizil olma',
+        cost: '15 000',
+        currency: "so'm",
+        unit: 'kg',
+        order: 1,
+        count: 1,
+      },
       {
         is_favorite: false,
         img: '/apple.png',
@@ -98,35 +121,10 @@ export default {
         order: 1,
         count: 1,
       },
-      {
-        is_favorite: false,
-        img: '/apple.png',
-        category_name: 'Sabzavotlar',
-        rating: 4.5,
-        product_name: 'Qizil olma',
-        cost: '20 000',
-        currency: "so'm",
-        unit: 'kg',
-        order: 1,
-        count: 1,
-      },
-      {
-        is_favorite: false,
-        img: '/tomato.png',
-        category_name: 'Go`sht mahsulotlari',
-        rating: 4,
-        product_name: 'Mol go`shti',
-        cost: '68 000',
-        currency: "so'm",
-        unit: 'kg',
-        order: 1,
-        count: 1,
-      },
     ],
   }),
+  methods:{}
 }
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss" src="../../../assets/profile.scss"></style>

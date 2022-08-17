@@ -2,14 +2,14 @@
   <nav class="navbar">
     <div class="navbar__top container">
       <div class="left">
-        <nuxt-link to="/">
-          <img src="/logo.svg" alt="" class="logo left mr-8"/>
+        <nuxt-link :to="localePath('/')" class="nav-logo">
+          <img src="/logo_new.svg" alt="logo" class="logo left mr-8"/>
         </nuxt-link>
         <div class="search">
           <v-text-field
             prepend-icon="mdi-magnify"
             hide-details
-            placeholder="Qanday mahsulot izlayapsiz?"
+            :placeholder="$t('navbar.which_product')"
           ></v-text-field>
         </div>
       </div>
@@ -32,53 +32,48 @@
             </v-list>
           </v-card>
         </v-menu>
-        <nuxt-link to="/favorite-products">
+        <nuxt-link :to="localePath('/favorite-products')">
           <button class="favorites">
             <v-badge color="green" content="6">
               <img src="/icons/heart.svg" alt=""/>
             </v-badge>
           </button>
         </nuxt-link>
-        <nuxt-link to="/basket">
+        <nuxt-link :to="localePath('/basket')">
           <button class="bags">
             <v-badge color="green" content="6">
               <img src="/icons/bag.svg" alt=""/>
             </v-badge>
           </button>
         </nuxt-link>
-        <v-menu offset-y>
-          <template v-slot:activator="{ on, attrs }">
-            <div v-bind="attrs" v-on="on" class="langs">
-              <img src="/icons/uzb.svg" alt=""/>
-              <span> Uz </span>
-              <v-icon> mdi-chevron-down</v-icon>
-            </div>
-          </template>
-          <v-card class="mx-auto rounded-lg change__lang">
-            <v-list dense>
-              <v-list-item-group>
-                <v-list-item v-for="(item, i) in langs" :key="i">
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      <img :src="`/icons/${item}.svg`" alt=""/>
-                      {{ item }}
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list-item-group>
-            </v-list>
-          </v-card>
-        </v-menu>
-        <nuxt-link to="" class="connect"> Bog'lanish</nuxt-link>
+
+        <div class="language d-flex mr-6 ml-15" @click="selectedLang">
+          <div class="language__selected">
+            <img :src="`/${$i18n.locale}.svg`" alt="flag">
+            <span class="ml-2 mr-1 text-capitalize">{{ $i18n.locale }}</span>
+            <v-icon>mdi-chevron-down</v-icon>
+          </div>
+
+          <div class="language__list">
+          <span v-for="(lang, idx) in lang_list" :key="idx" @click="selectLang(lang)" v-if="lang.title != active_lang">
+            <nuxt-link  :to="switchLocalePath(lang.code)" class="d-flex align-center">
+              <img :src="lang.icon" alt="flag">
+              {{ lang.title }}
+            </nuxt-link>
+          </span>
+          </div>
+        </div>
+
+        <nuxt-link :to="localePath('/')" class="connect"> {{ $t('btns.contact') }} </nuxt-link>
       </div>
     </div>
 
-    <div class="navbar__bottom container">
+    <div class="navbar__bottom pt-10 container">
       <v-menu offset-y content-class="category__menu">
         <template v-slot:activator="{ on, attrs }">
           <div v-bind="attrs" v-on="on" class="category">
             <img src="/icons/category.svg" alt=""/>
-            <span> Barcha kategoriya </span>
+            <span> {{ $t('navbar.all_categories') }} </span>
             <v-icon> mdi-chevron-down</v-icon>
           </div>
         </template>
@@ -107,10 +102,9 @@
                           @click="selected_category = i"
                         >
                           {{ item.name }}
-                          <v-icon v-if="item.is_subCategory"
-                          >mdi-chevron-right
-                          </v-icon
-                          >
+                          <v-icon v-if="item.is_subCategory">
+                            mdi-chevron-right
+                          </v-icon>
                         </div>
                       </template>
                       <v-card outlined class="categories__list">
@@ -126,12 +120,10 @@
                                 </v-list-item-title>
                               </v-list-item-content>
                             </v-list-item>
-                          </v-list-item-group
-                          >
+                          </v-list-item-group>
                         </v-list>
                       </v-card>
                     </v-menu>
-
                     <nuxt-link v-else to="item.url">
                       {{ item.name }}
                     </nuxt-link>
@@ -142,13 +134,13 @@
           </v-list>
         </v-card>
       </v-menu>
-      <nuxt-link v-for="(l, i) in links" :key="i" :to="l.url" class="menus">
+      <nuxt-link v-for="(l, i) in links" :key="i" :to="localePath(l.url)" class="menus">
         {{ l.name }}
       </nuxt-link>
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
           <div v-bind="attrs" v-on="on" class="about">
-            <span> Biz Haqimizda </span>
+            <span> {{ $t('navbar.about_us') }} </span>
             <v-icon> mdi-chevron-down</v-icon>
           </div>
         </template>
@@ -159,7 +151,7 @@
                 v-for="(item, i) in about"
                 :key="i"
                 link
-                :to="item.url"
+                :to="localePath(item.url)"
               >
                 <v-list-item-content>
                   <v-list-item-title>
@@ -179,34 +171,14 @@ export default {
   name: 'MainNavbar',
   data() {
     return {
+      active_lang: "Uz",
+      active_flag: '/uz.svg',
       user: [
         {item: 'Sign In', link: '/login'},
         {item: 'Sign Up', link: '/registration'},
       ],
       langs: ['ru', 'en'],
       selected_category: '',
-      links: [
-        {
-          name: 'Ommabop mahsulotlar',
-          url: '#',
-        },
-        {
-          name: 'Yangi mahsulotlar',
-          url: '#',
-        },
-        {
-          name: 'Mevalar',
-          url: '/categories/mevalar',
-        },
-        {
-          name: 'Sabzavotlar',
-          url: '#',
-        },
-        {
-          name: 'Servislar',
-          url: '#',
-        },
-      ],
 
       about: [
         {
@@ -291,13 +263,56 @@ export default {
     }
   },
   computed: {
+    lang_list(){
+      return this.$i18n.locales;
+    },
+    links(){
+       const links = [
+        {
+          name: this.$t('navbar.popular_products'),
+          url: '#',
+        },
+        {
+          name: this.$t('navbar.new_product'),
+          url: '#',
+        },
+        {
+          name: this.$t('navbar.fruits'),
+          url: '/categories/mevalar',
+        },
+        {
+          name: this.$t('navbar.vegetables'),
+          url: '#',
+        },
+        {
+          name: this.$t('navbar.service'),
+          url: '#',
+        },
+      ]
+      return links;
+    },
     number() {
       return this.$store.state.number;
-    }
+    },
   },
-  methods: {},
+  methods: {
+    getCategories() {
+      this.$axios.$get('')
+    },
+    selectLang(selected) {
+      this.active_lang = selected.title;
+      this.active_flag = selected.icon;
+    },
+
+    selectedLang() {
+      const current_lang = document.querySelector('.language__list');
+      current_lang.classList.toggle('active')
+    },
+
+  },
   mounted() {
-    this.$store.commit('setNumber', 34)
+    this.lang
+    this.$store.commit('setNumber', 34);
   }
 }
 </script>

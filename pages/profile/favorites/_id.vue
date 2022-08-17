@@ -5,23 +5,13 @@
         <profile-menu/>
 
         <div class="profile__main">
-          <div class="profile__main--title d-flex justify-space-between">
-            <div>Sevimli mahsulotlar</div>
-            <div class="remove-all">Barcha sevimlilarni o’chirish </div>
+          <div class="profile__main--title">
+            <div>Mening buyurtmalarim</div>
+          </div>
+          <div class="profile__main--subtitle">
+            <div>Buyurtma №102</div>
           </div>
 
-            <v-row class="sale__products look-like pa-0">
-              <v-col
-                v-for="(p, idx) in best_products"
-                :key="idx"
-                cols="12"
-                lg="4"
-                md="6"
-                sm="12"
-              >
-                <products-card :card="p" />
-              </v-col>
-            </v-row>
 
         </div>
       </div>
@@ -127,4 +117,4 @@ export default {
 }
 </script>
 
-<style lang="scss" src="assets/profile.scss"></style>
+<style lang="scss" src="../../../assets/profile.scss"></style>

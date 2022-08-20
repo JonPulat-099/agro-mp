@@ -9,13 +9,13 @@
               <v-text-field
                 prepend-icon="mdi-magnify"
                 hide-details
-                placeholder="Qidiruv"
-              ></v-text-field>
+                :placeholder="$t('labels.search')"
+              />
             </div>
           </div>
           <div class="sort-type">
             <v-select
-              label="Saralash"
+              :label="$t('labels.sort')"
               hide-details
               :items="sort"
               append-icon="mdi-chevron-down"

@@ -2,7 +2,7 @@
   <v-card class="product__card">
     <v-card-title elevation="0">
       <span v-if="card.is_new" class="new"> Yangi </span>
-      <v-btn icon @click="toggleFavourites(card)">
+      <v-btn icon @click="toggleFavourites">
         <v-icon v-if="!card.is_favorite" color="#F8C018">
           mdi-heart-outline
         </v-icon>
@@ -19,7 +19,7 @@
             {{ card.rating }}
           </span>
         </div>
-        <nuxt-link :to="localePath(`/product/${card.product_name}`)" class="product-name">
+        <nuxt-link :to="`/profile/favorites/${card.product_name}`" class="product-name">
           <p class="product__name">{{ card.product_name }}</p>
         </nuxt-link>
         <p class="cost">
@@ -38,7 +38,7 @@
         </v-btn>
       </aside>
       <aside>
-        <v-btn icon @click="addBasket(card)">
+        <v-btn icon>
           <img src="/icons/bag.svg" alt="" />
         </v-btn>
       </aside>
@@ -55,21 +55,8 @@ export default {
   },
 
   methods: {
-    toggleFavourites(item) {
+    toggleFavourites() {
       this.card.is_favorite = !this.card.is_favorite
-      const favorite = this.card.is_favorite
-      if(favorite) {
-        this.$store.commit('setFavorite', item);
-        this.$toast.success(`" ${item.product_name} " added to Favorite !`, {theme: 'bubble'})
-      }
-      else  {
-        this.$store.commit('deleteFavorite', item.id);
-        this.$toast.success('Product removed from Favorite !', {theme: 'bubble'})
-      }
-    },
-    addBasket(item) {
-      this.$store.commit('setProduct', item);
-      this.$toast.success('Product added !', {theme: 'bubble'})
     },
   },
 }

@@ -3,7 +3,7 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'agro-world',
+    title: 'Food-City',
     htmlAttrs: {
       lang: 'en',
     },
@@ -13,7 +13,7 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/svg', href: '/logo_new.svg' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -41,10 +41,12 @@ export default {
     '@nuxtjs/style-resources',
     '@nuxtjs/auth-next',
     '@nuxtjs/toast',
+    "@nuxtjs/i18n",
   ],
 
   toast: {
-    position: 'top-center'
+    position: 'top-center',
+    duration: 2000
   },
 
   auth: {
@@ -68,18 +70,58 @@ export default {
       home: '/',
     },
   },
-  router: {
-    middleware: ['auth', 'isAuth'],
-  },
+  // router: {
+  //   middleware: ['auth', 'isAuth'],
+  // },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'http://127.0.0.1:2332',
+    baseURL: 'http://192.168.3.11:2332',
   },
 
   styleResources: {
     scss: ['@/assets/mixins.scss'],
+  },
+
+  i18n: {
+    useCookie: false,
+    alwaysRedirect: true,
+    detectBrowserLanguage: false,
+    // strategy: "prefix",
+    locales: [
+      {
+        code: "ru",
+        iso: "ru-RU",
+        name: "Russian",
+        file: "ru/index.js",
+        icon: "/ru.svg",
+        title: "Ru"
+      },
+      {
+        code: "uz",
+        iso: "uz-UZ",
+        name: "O'zbek",
+        file: "uz/index.js",
+        icon: "/uz.svg",
+        title: "Uz"
+      },
+      {
+        code: "en",
+        iso: "en-US",
+        name: "English",
+        file: "en/index.js",
+        icon: "/en.svg",
+        title: "En"
+      }
+    ],
+    lazy: true,
+    seo: false,
+    langDir: "locales/",
+    strategy: 'prefix_except_default',
+    defaultLocale: "uz",
+    parsePages: false,
+
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -95,17 +137,17 @@ export default {
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
-          success: colors.green.accent3,
+          success: colors.green.accent3
         },
 
         light: {
-          green: '#F8C018',
-        },
-      },
+          green: '#F8C018'
+        }
+      }
     },
     icons: {
-      iconfont: 'mdiSvg', // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4' || 'faSvg'
-    },
+      iconfont: 'mdiSvg' // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4' || 'faSvg'
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

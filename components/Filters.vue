@@ -1,12 +1,12 @@
 <template>
   <div class="filters">
     <div class="filters__title">
-      <span class="main">Filter</span>
-      <span class="count">Mahsulotlar turi (11)</span>
+      <span class="main">{{ $t('filters.filter') }}</span>
+      <span class="count">{{ $t('filters.products_type') }} (11)</span>
     </div>
     <v-divider class="mt-4"/>
     <div class="filters__body">
-      <div class="filters__body--title">Kategoriya</div>
+      <div class="filters__body--title">{{ $t('filters.category') }}</div>
       <v-expansion-panels flat hover>
         <v-expansion-panel v-for="(item, i) in categories" :key="i">
           <v-expansion-panel-header color="#F7FCFC">
@@ -43,9 +43,9 @@
       <v-divider class="mt-4"/>
       <div class="filters__range">
         <div class="filters__range--title">
-          <div class="filters__body--title mt-4">Narx</div>
+          <div class="filters__body--title mt-4">{{ $t('filters.price') }}</div>
           <div class="filters__range--currency d-flex align-center justify-space-between">
-            <span class="mr-7">Narx oralig’ini tanlang</span>
+            <span class="mr-7">{{ $t('filters.between') }}</span>
             <v-select
               :items="currency"
               v-model="range.currency"
@@ -89,7 +89,7 @@
               ></v-text-field>
             </div>
             <v-divider class="mt-8"/>
-            <div class="filters__body--title mt-4">Turlari bo’yicha</div>
+            <div class="filters__body--title mt-4">{{ $t('filters.by_type') }}</div>
             <v-expansion-panels flat hover>
               <v-expansion-panel v-for="(item, i) in types" :key="i">
                 <v-expansion-panel-header color="#F7FCFC">
@@ -125,8 +125,8 @@
             </v-expansion-panels>
 
             <v-divider class="mt-8"/>
-            <div class="filters__body--title mt-4">Do’kon raqami bo’yicha</div>
-            <button class="filters__btn">Qidirish</button>
+            <div class="filters__body--title mt-4">{{ $t('filters.market_num') }}</div>
+            <button class="filters__btn">{{ $t('btns.search') }}</button>
           </div>
         </div>
       </div>
@@ -136,6 +136,7 @@
 
 <script>
 export default {
+  name:'ProfileFilters',
   data: () => ({
     currency: ['UZS', 'USD', 'RUB'],
     range: {

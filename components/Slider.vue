@@ -33,7 +33,7 @@
             <h1>{{ s.title }}</h1>
             <p>{{ s.text }}</p>
 
-            <a :href="s.url" class="learn__more"> Learn More </a>
+            <a :href="s.url" class="learn__more"> {{ $t('btns.learn_more') }} </a>
           </v-flex>
           <v-flex xs7>
             <img :src="s.img" alt="" />
@@ -47,33 +47,35 @@
 
 <script>
 export default {
-  data: () => ({
-    model: 0,
-    colors: ['primary', 'secondary', 'yellow darken-2', 'red', 'orange'],
-    slider: [
-      {
-        title: 'Bahor uchun bizda foydali mahsulotlar.',
-        text: 'Birinchilardan  bo’lib harid qiling.',
-        url: '#',
-        img: '/vegetables.png',
-        bg: '#F8C018',
-      },
-      {
-        title: 'Kuz uchun bizda foydali mahsulotlar. ',
-        text: 'Birinchilardan  bo’lib harid qiling.',
-        url: '#',
-        img: '/vegetables.png',
-        bg: '#2EAF7C',
-      },
-      {
-        title: 'Qish uchun bizda foydali mahsulotlar. ',
-        text: 'Birinchilardan  bo’lib harid qiling.',
-        url: '#',
-        img: '/vegetables.png',
-        bg: '#F8C018',
-      },
-    ],
-  }),
+  data() {
+    return {
+      model: 0,
+      colors: ['primary', 'secondary', 'yellow darken-2', 'red', 'orange'],
+      slider: [
+        {
+          title: this.$t('slider.card_1.title'),
+          text: this.$t('slider.card_1.text'),
+          url: '#',
+          img: '/vegetables.png',
+          bg: '#F8C018',
+        },
+        {
+          title: this.$t('slider.card_2.title'),
+          text: this.$t('slider.card_2.text'),
+          url: '#',
+          img: '/vegetables.png',
+          bg: '#2EAF7C',
+        },
+        {
+          title: this.$t('slider.card_3.title'),
+          text: this.$t('slider.card_3.text'),
+          url: '#',
+          img: '/vegetables.png',
+          bg: '#F8C018',
+        },
+      ],
+    }
+  },
 }
 </script>
 

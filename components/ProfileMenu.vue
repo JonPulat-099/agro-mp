@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="profile__item d-flex flex-column">
-      <nuxt-link to="/profile"><v-icon>mdi-account</v-icon>Profil ma’lumotlarim</nuxt-link>
-      <nuxt-link to="/profile/orders"><v-icon>mdi-file-document</v-icon>Mening buyurtmalarim</nuxt-link>
-      <nuxt-link to="/profile/favorites"><v-icon>mdi-heart-half-full</v-icon>Sevimli mahsulotlar</nuxt-link>
-      <nuxt-link to="/"><v-icon>mdi-email</v-icon>Xabarlar</nuxt-link>
-      <nuxt-link to="/"><v-icon>mdi-logout</v-icon>Chiqish</nuxt-link>
+      <nuxt-link :to="localePath('/profile')"><v-icon>mdi-account</v-icon>{{ $t('profile_menu.info') }}</nuxt-link>
+      <nuxt-link :to="localePath('/profile/orders')"><v-icon>mdi-file-document</v-icon>{{ $t('profile_menu.my_orders') }}</nuxt-link>
+      <nuxt-link :to="localePath('/profile/products')"><v-icon>mdi-heart-half-full</v-icon>{{ $t('profile_menu.my_product') }}</nuxt-link>
+      <nuxt-link :to="localePath('/')"><v-icon>mdi-email</v-icon>{{ $t('profile_menu.message') }}</nuxt-link>
+      <nuxt-link :to="localePath('/')"><v-icon>mdi-logout</v-icon>{{ $t('profile_menu.logout') }}</nuxt-link>
     </div>
   </div>
 </template>
@@ -13,7 +13,6 @@
 <script>
 export default {
   name: 'ProfileMenu',
-  data: () => ({})
 }
 </script>
 

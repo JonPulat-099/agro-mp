@@ -4,45 +4,50 @@
       <div class="profile__body d-flex justify-space-between">
         <profile-menu/>
 
+        <div class="profile__main--nodata">
+
+        </div>
         <div class="profile__main">
           <div class="profile__main--title d-flex justify-space-between">
-            <div>Profil ma’lumotlari</div>
-            <div><v-btn color="amber" elevation="0" dark small><v-icon size="18" class="mr-2">mdi-pencil</v-icon> O’zgartirish </v-btn></div>
+            <div>{{ $t("titles.profile_info") }}</div>
+            <div><v-btn color="amber" elevation="0" dark small><v-icon size="18" class="mr-2">mdi-pencil</v-icon> {{$t("btns.change")}} </v-btn></div>
           </div>
           <div class="profile__main--avatar text-center">
-            <img src="/profile/avatar.svg" alt="avatar">
+            <img :src="photo_url" class="selected" alt="avatar" v-if="photo_url">
+            <img src="/profile/avatar.svg" alt="avatar" v-else>
           </div>
           <div>
             <v-file-input
               :rules="rules"
-              accept="image/png, image/jpeg, image/bmp"
+              accept="image/png, image/jpeg, image/jpg"
               placeholder="Pick an avatar"
               prepend-icon="mdi-camera"
-              label="Rasmni tanalng"
+              :label="$t('labels.select_img')"
               rounded
               outlined
               dense
               class="mt-5"
               color="#07d271"
+              v-model="user_avatar"
             />
           </div>
 
           <v-row class="mt-6">
             <v-col>
               <v-text-field
-                label="Ismingizni kiriting"
+                :label="$t('labels.add_name')"
                 outlined
                 color="#07D271"
               />
             </v-col>
             <v-col>
-              <v-text-field label="Familiyangizni kiriting" outlined color="#07D271"/>
+              <v-text-field :label="$t('labels.add_surname')" outlined color="#07D271"/>
             </v-col>
           </v-row>
           <v-row>
             <v-col>
               <v-text-field
-                label="Telefonni kiriting"
+                :label="$t('labels.add_phone')"
                 outlined
                 color="#07D271"
                 v-mask="'+### (##) ### ## ##'"
@@ -51,7 +56,7 @@
             </v-col>
             <v-col>
               <v-text-field
-                label="Loginni kiriting"
+                :label="$t('labels.add_login')"
                 outlined
                 color="#07D271"
                 v-model="user_info.login"
@@ -62,7 +67,7 @@
             <v-col>
               <v-text-field
                 :type="password ? 'text': 'password'"
-                label="Parolni kiriting"
+                :label="$t('labels.add_password')"
                 outlined
                 color="#07D271"
                 :append-icon="password ? 'mdi-eye-off' : 'mdi-eye'"
@@ -71,20 +76,21 @@
               />
             </v-col>
             <v-col>
-              <v-text-field label="E-mailni kiriting" outlined color="#07D271"/>
+              <v-text-field :label="$t('labels.add_email')" outlined color="#07D271"/>
             </v-col>
           </v-row>
           <v-divider class="mb-9"/>
 
           <div class="profile__place">
             <div class="profile__place--title d-flex justify-space-between">
-              <div>Boshqa ma’lumotlar</div>
-              <v-btn color="amber" elevation="0" dark small><v-icon size="18">mdi-pencil</v-icon>O’zgartirish</v-btn>
+              <div>{{ $t('titles.other_info') }}</div>
+              <v-btn color="amber" elevation="0" dark small><v-icon size="18">mdi-pencil</v-icon>
+                {{ $t('btns.change') }}</v-btn>
             </div>
             <v-row class="mt-8">
               <v-col>
                 <v-select
-                  label="Mamlakatni tanlang"
+                  :label="$t('labels.select_country')"
                   outlined
                   color="#07d271"
                 >
@@ -95,7 +101,7 @@
               </v-col>
               <v-col>
                 <v-select
-                  label="Viloyatni tanlang"
+                  :label="$t('labels.select_region')"
                   outlined
                   color="#07d271"
                 >
@@ -106,7 +112,7 @@
               </v-col>
               <v-col>
                 <v-text-field
-                  label="Manzilni kiriting"
+                  :label="$t('labels.add_address')"
                   outlined
                   color="#07d271"
                 >
@@ -126,10 +132,12 @@
 <script>
 import ProfileMenu from "@/components/ProfileMenu";
 export default {
-  components: ProfileMenu,
-  name: 'Profile',
+  components: {ProfileMenu},
+  name: '',
   layout: 'main',
   data:() => ({
+    user_avatar: null,
+    photo_url: '',
     password: false,
     user_info: {
       name: '',
@@ -140,9 +148,15 @@ export default {
       email: '',
     },
     rules: [
-      value => !value || value.size < 2000000 || 'Avatar size should be less than 2 MB!',
+      value => !value || value.size < 5000000 || 'Avatar size should be less than 5 MB!',
     ],
   }),
+  watch: {
+    user_avatar(val){
+        // const avatar = val.target.files[0];
+        if(val) this.photo_url = URL.createObjectURL(val);
+    }
+  },
   methods: {
 
   }

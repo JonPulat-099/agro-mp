@@ -3,20 +3,20 @@
     <v-row class="wrap">
       <v-col cols="10" md="6" lg="8">
         <div class="d-flex justify-space-between align-center">
-          <div class="basket__title">Savat <span>(5)</span></div>
+          <div class="basket__title">{{ $t('titles.basket') }} <span>({{ sizeProduct }})</span></div>
           <div class="basket__all-remove">
-            <span>Barchasini o’chirish</span>
-            <div class="basket__trash">
+            <span>{{ $t('links.all_remove') }}</span>
+            <div class="basket__trash" @click="removeAll">
               <img src="~/assets/icons/trash.svg" alt="trash">
             </div>
           </div>
         </div>
         <div class="basket__header">
           <ul class="d-flex align-center pl-0">
-            <li>Nomi</li>
-            <li>Kategoriya</li>
-            <li>Miqdori</li>
-            <li>Narxi</li>
+            <li>{{ $t('basket.name') }}</li>
+            <li>{{ $t('basket.category') }}</li>
+            <li>{{ $t('basket.amount') }}</li>
+            <li>{{ $t('basket.price') }}</li>
           </ul>
         </div>
         <div class="basket__product pt-5" v-for="(el, idx) in selected" :key="idx">
@@ -25,10 +25,10 @@
               <div class="basket__product--img">
                 <img :src="el.img" alt="product">
               </div>
-              <div class="ml-2">{{ el.name }}</div>
+              <div class="ml-2">{{ el.product_name }}</div>
             </div>
             <div class="basket__product--category">
-              {{ el.category }}
+              {{ el.category_name }}
             </div>
             <div class="basket__product--amount d-flex align-center">
               <div>
@@ -46,31 +46,33 @@
                 {{ el.cost.toLocaleString() }} <span> {{ el.currency }} / {{ el.unit }} </span>
               </p>
             </div>
-            <div class="basket__trash">
+            <div class="basket__trash" @click="removeProduct(idx, el)">
               <img src="~/assets/icons/trash.svg" alt="trash">
             </div>
           </div>
           <v-divider class="mt-5"/>
         </div>
+
+
       </v-col>
       <v-col cols="10" md="4" lg="4">
         <div class="basket__total">
-          <div class="basket__total--title mb-5">Umumiy</div>
+          <div class="basket__total--title mb-5">{{ $t('basket.all') }}</div>
           <div class="basket__total--price mb-5 d-flex justify-space-between">
-            <div>Narx</div>
+            <div>{{ $t('basket.price') }}</div>
             <p class="pb-0 font-weight-bold">257 000 <span class="font-weight-light">so’m</span></p>
           </div>
           <div class="basket__total--price d-flex justify-space-between">
-            <div>Chegirma</div>
+            <div>{{ $t('basket.sale') }}</div>
             <p class="pb-0 red--text font-weight-bold">-16 000 <span class="font-weight-light">so’m</span></p>
           </div>
           <v-divider class="mb-5"/>
           <div class="basket__total--all mb-5 d-flex justify-space-between">
-            <div>Umumiy narx</div>
+            <div>{{ $t('basket.total') }}</div>
             <p class="pb-0 green--text font-weight-bold">247,000 <span class="font-weight-light">so’m</span></p>
           </div>
-          <nuxt-link to="/confirm">
-            <Button text="Buyurtmani tasdiqlash" status="success_btn"/>
+          <nuxt-link :to="localePath(  '/confirm')">
+            <Button :text="$t('btns.confirm')" status="success_btn"/>
           </nuxt-link>
         </div>
       </v-col>
@@ -82,38 +84,24 @@
 export default {
   layout: "main",
   data: () => ({
-    selected: [
-      {
-        img: '/apple.png',
-        name: 'Qizil olma',
-        category: 'Mevalar',
-        amount: 1,
-        cost: 16000,
-        currency: 'uzs',
-        unit: 'kg'
-      },
-      {
-        img: '/apelsin.png',
-        name: 'Apelsin',
-        category: 'Mevalar',
-        amount: 3,
-        cost: 12000,
-        currency: 'uzs',
-        unit: 'kg'
-      },
-      {
-        img: '/apple.png',
-        name: 'Qizil olma',
-        category: 'Mevalar',
-        amount: 1,
-        cost: 56700,
-        currency: 'uzs',
-        unit: 'kg'
-      },
-
-    ]
   }),
+  computed:{
+    selected() {
+      return this.$store.state.products;
+    },
+    sizeProduct() {
+      return this.$store.state.products.length;
+    }
+  },
   methods: {
+    removeProduct(idx, el) {
+      this.$store.commit('deleteProduct', idx)
+      this.$toast.success(`Removed ${el.product_name}`, {theme: 'bubble'})
+    },
+    removeAll() {
+      this.$store.commit('deleteAll', 1)
+      this.$toast.success('All removed !', {theme: 'bubble'})
+    },
     upAmount(val) {
       console.log(val);
       if(val <= 1 ) {
@@ -124,4 +112,4 @@ export default {
 }
 </script>
 
-<style lang="scss" src="@/assets/basket.scss"></style>
+<style lang="scss" src="assets/basket.scss"></style>

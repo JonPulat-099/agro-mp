@@ -2,9 +2,9 @@
   <div class="container">
     <slider />
     <v-flex row wrap xs12 justify-space-between align-center>
-      <h1 class="headers mt-0">Sara kategoriyalar</h1>
+      <h1 class="headers mt-0">{{ $t('titles.best_categories') }}</h1>
       <a href="#" class="show__more">
-        Barchasini ko’rsatish
+        {{ $t('links.view_more') }}
         <v-icon>mdi-chevron-right</v-icon>
       </a>
     </v-flex>
@@ -28,14 +28,15 @@
         </article>
       </v-flex>
     </v-layout>
-
-    <v-flex row wrap xs12 justify-space-between align-center>
-      <h1 class="headers">Ommabop mahsulotlar</h1>
-      <a href="#" class="show__more">
-        Barchasini ko’rsatish
-        <v-icon>mdi-chevron-right</v-icon>
-      </a>
-    </v-flex>
+    <div class="popular-header mb-10">
+      <v-flex row wrap xs12 justify-space-between  align-center>
+        <h1 class="headers mt-0 mb-0">{{ $t('titles.popular_products') }}</h1>
+        <a href="#" class="show__more">
+          {{ $t('links.view_more') }}
+          <v-icon>mdi-chevron-right</v-icon>
+        </a>
+      </v-flex>
+    </div>
 
     <v-row class="blocks">
       <v-col
@@ -51,7 +52,7 @@
     </v-row>
 
     <v-flex row wrap xs12 justify-space-between align-center>
-      <h1 class="headers">Qaynoq takliflar</h1>
+      <h1 class="headers">{{ $t('titles.hot_offers') }}</h1>
     </v-flex>
     <v-row class="blocks">
       <v-col v-for="(o, idx) in hotOffers" :key="idx">
@@ -69,13 +70,16 @@
       </v-col>
     </v-row>
 
-    <v-flex row wrap xs12 justify-space-between align-center>
-      <h1 class="headers">Yangi mahsulotlar</h1>
-      <a href="#" class="show__more">
-        Barchasini ko’rsatish
-        <v-icon>mdi-chevron-right</v-icon>
-      </a>
-    </v-flex>
+    <div class="popular-header mb-10">
+      <v-flex row wrap xs12 justify-space-between align-center>
+        <h1 class="headers my-0">{{ $t('titles.new_product') }}</h1>
+        <a href="#" class="show__more">
+          {{ $t('links.view_more') }}
+          <v-icon>mdi-chevron-right</v-icon>
+        </a>
+      </v-flex>
+    </div>
+
 
     <v-row class="blocks">
       <v-col
@@ -91,21 +95,21 @@
     </v-row>
 
     <v-flex row wrap xs12 justify-space-between align-center>
-      <h1 class="headers">Nima uchun aynan biz?</h1>
+      <h1 class="headers">{{ $t('titles.why_us') }}</h1>
     </v-flex>
 
     <v-row class="blocks why__us--section">
       <v-col v-for="(w, i) in why_us" :key="i" cols="12" lg="4" md="6" sm="12">
         <div class="why__us--item">
           <img :src="w.icon" alt="" />
-          <h3>{{ w.title }}</h3>
+          <h3 class="my-2">{{ w.title }}</h3>
           <p>{{ w.text }}</p>
         </div>
       </v-col>
     </v-row>
 
     <div class="sale">
-      <h1 class="headers">Chegirmali mahsulotar</h1>
+      <h1 class="headers">{{ $t('titles.sale_product') }}</h1>
       <v-row class="sale__products">
         <v-col
           v-for="(p, idx) in new_products"
@@ -129,6 +133,7 @@ export default {
   components: { Slider, HotOffers },
   layout: 'main',
   name: 'IndexPage',
+  auth: false,
   data() {
     return {
       hotOffers: [
@@ -302,33 +307,33 @@ export default {
       why_us: [
         {
           icon: '/natural.svg',
-          title: 'Faqatgina tabiy mahsulotlar',
-          text: 'Bizning onlayd do’kon faqatgina tabiy bo’lgan mahsulotlardan foydalanamiz. Biz mijozlar uchun qayg’uramiz. ',
+          title: this.$t('why_us.card_1.title'),
+          text: this.$t('why_us.card_1.content'),
         },
         {
           icon: '/best_cost.svg',
-          title: 'Hamyonbop narxlar',
-          text: 'Bizning do’konimzidagi mahsulotlarning sifati yaxshi bo’libgina qolmasdan hamyonbop narxlarda sotiladi.',
+          title: this.$t('why_us.card_2.title'),
+          text: this.$t('why_us.card_2.content'),
         },
         {
           icon: '/all_time.svg',
-          title: '24/7 ish vaqti',
-          text: 'Bizning onlayn do’kon 24/7 vaqtlarda ishlaydi. Istalgan vaqtda buyurtma berishingiz mumkin.',
+          title: this.$t('why_us.card_3.title'),
+          text: this.$t('why_us.card_3.content'),
         },
         {
           icon: '/fast.svg',
-          title: 'Tezkor va sifatli yetkazib berish',
-          text: 'Biz barcha mahsulotlarni tez hamda sifatli yetkazib beramiz. ',
+          title: this.$t('why_us.card_4.title'),
+          text: this.$t('why_us.card_4.content'),
         },
         {
           icon: '/deliviry.svg',
-          title: 'O’zbekiston bo’ylab yetkazib berish',
-          text: 'Biz barcha mahsulotlarni O’zbekiston bo’ylab uyingizgacha yetkazib beramiz.',
+          title: this.$t('why_us.card_5.title'),
+          text: this.$t('why_us.card_5.content'),
         },
         {
           icon: '/pay.svg',
-          title: 'Ko’p funksiyali to’lov tizimi',
-          text: 'Bizda barcha turdagi to’lov tizimlar mavjud. Naqd ko’rinishida yoki bo’lmasam Click , Payme hamda boshqa turdagi tizimlar ham ishlaydi',
+          title: this.$t('why_us.card_6.title'),
+          text: this.$t('why_us.card_6.content'),
         },
       ],
     }
@@ -339,4 +344,4 @@ export default {
 }
 </script>
 
-<style lang="scss" src="@/assets/home.scss"></style>
+<style lang="scss" src="assets/home.scss"></style>

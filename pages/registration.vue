@@ -1,7 +1,7 @@
 <template>
   <v-form ref="regForm">
     <div class="register d-flex flex-column align-center mt-5">
-      <img src="/logo.svg" alt="logo" />
+      <img src="/logo_new.svg" alt="logo" />
       <div class="login__body elevation-5 mt-8 pa-4 px-6">
         <div class="login__title text-h6 text-center mb-5 mt-5">
           Ro'yxatdan o'tish
@@ -66,9 +66,9 @@
           color="green"
           v-model="user_register.remember_me"
         />
-        <v-btn @click="userRegistration" color="green" dark>
-          Ro'yhatdan o'tish
-        </v-btn>
+        <div class="d-flex justify-center">
+          <v-btn @click="userRegistration" color="green" dark>Ro'yhatdan o'tish</v-btn>
+        </div>
         <!-- <nuxt-link to="" class="connect"> Ro'yxatdan o'ting </nuxt-link> -->
 
         <div class="text-center my-5">Allaqachon ro'yxatdan o'tganmisiz ?</div>
@@ -90,7 +90,7 @@
 
 <script>
 export default {
-  auth: false, 
+  auth: false,
   data: () => ({
     regions: [
       'Toshkent',
@@ -109,7 +109,6 @@ export default {
       password: '',
       phone: '',
       region: '',
-      offerta: false,
     },
   }),
   methods: {
@@ -125,7 +124,7 @@ export default {
             })
           )
           if (resp.state === "success") {
-            this.$router.push("/login")
+            await this.$router.push("/login")
           } else {
             this.getFlash("error", resp.text)
           }

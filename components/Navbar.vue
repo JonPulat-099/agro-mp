@@ -23,7 +23,7 @@
           <v-card class="mx-auto rounded-lg cabinet">
             <v-list dense>
               <v-list-item-group>
-                <v-list-item v-for="(item, i) in user" :key="i" :to="item.link">
+                <v-list-item v-for="(item, i) in user" :key="i" :to="localePath(item.link)">
                   <v-list-item-content>
                     <v-list-item-title v-text="item.item"></v-list-item-title>
                   </v-list-item-content>
@@ -32,18 +32,20 @@
             </v-list>
           </v-card>
         </v-menu>
-        <nuxt-link :to="localePath('/favorite-products')">
+        <nuxt-link :to="localePath('/favorite')">
           <button class="favorites">
-            <v-badge color="green" content="6">
-              <img src="/icons/heart.svg" alt=""/>
+            <v-badge color="green" :content="favorite" v-if="favorite >= 1">
+              <img src="/icons/heart.svg" alt="heard icon"/>
             </v-badge>
+            <img src="/icons/heart.svg" alt="heard icon" v-else/>
           </button>
         </nuxt-link>
         <nuxt-link :to="localePath('/basket')">
           <button class="bags">
-            <v-badge color="green" content="6">
-              <img src="/icons/bag.svg" alt=""/>
+            <v-badge color="green" :content="product" v-if="product >= 1">
+              <img src="/icons/bag.svg" alt="basket icon"/>
             </v-badge>
+            <img src="/icons/bag.svg" alt="basket icon" v-else/>
           </button>
         </nuxt-link>
 
@@ -55,7 +57,7 @@
           </div>
 
           <div class="language__list">
-          <span v-for="(lang, idx) in lang_list" :key="idx" @click="selectLang(lang)" v-if="lang.title != active_lang">
+          <span v-for="(lang, idx) in lang_list" :key="idx" @click="selectLang(lang)" v-if="lang.title !== active_lang">
             <nuxt-link  :to="switchLocalePath(lang.code)" class="d-flex align-center">
               <img :src="lang.icon" alt="flag">
               {{ lang.title }}
@@ -174,8 +176,8 @@ export default {
       active_lang: "Uz",
       active_flag: '/uz.svg',
       user: [
-        {item: 'Sign In', link: '/login'},
-        {item: 'Sign Up', link: '/registration'},
+        { item: 'Profile', link: '/profile' },
+        { item: 'Logout', link: '/registration' },
       ],
       langs: ['ru', 'en'],
       selected_category: '',
@@ -201,12 +203,19 @@ export default {
 
       categories: [
         {
-          name: 'Mevalar',
-          is_subCategory: true,
+          id: 1,
+          options: {
+            name: 'Mevalar',
+            is_subCategory: true,
+          },
           sub_category: [
             {
               name: 'Lorem ipsum',
               url: '#',
+              content: {
+                name: "",
+
+              }
             },
             {
               name: 'Lorem ipsum',
@@ -262,6 +271,9 @@ export default {
       ],
     }
   },
+  created() {
+    // this.getCategories();
+  },
   computed: {
     lang_list(){
       return this.$i18n.locales;
@@ -291,13 +303,19 @@ export default {
       ]
       return links;
     },
-    number() {
-      return this.$store.state.number;
+    product() {
+      return this.$store.state.products.length;
+    },
+    favorite() {
+      return this.$store.state.favorite.length;
     },
   },
+
   methods: {
     getCategories() {
-      this.$axios.$get('')
+      this.$axios.$get('/categories').then(res => {
+        this.categories = res.data.categories
+      })
     },
     selectLang(selected) {
       this.active_lang = selected.title;
@@ -311,8 +329,8 @@ export default {
 
   },
   mounted() {
-    this.lang
-    this.$store.commit('setNumber', 34);
+
+    // this.$store.commit('setNumber', 34);
   }
 }
 </script>

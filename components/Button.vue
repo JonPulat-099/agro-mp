@@ -10,7 +10,7 @@ export default {
   props: {
     click: {
       type: Function,
-      required: false
+      required: false,
     },
     status: {
       type: String,
@@ -19,6 +19,11 @@ export default {
     text: {
       type: String,
       required: true
+    }
+  },
+  methods: {
+    default(){
+
     }
   }
 }

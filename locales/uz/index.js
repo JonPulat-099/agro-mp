@@ -18,7 +18,8 @@ export default {
     all: "Umumiy",
     other_info: "Boshqa ma’lumotlar",
     all_remove: "Barcha sevimlilarni o’chirish",
-
+    my_products: "Mening mahsulotlarim",
+    no_product: "Siz hali mahsulot qo’shmadingiz"
   },
   navbar: {
     which_product: "Qanday mahsulot izlayapsiz?",
@@ -56,7 +57,8 @@ export default {
     share: "Ulanish",
     learn_more: "Ko'proq bilish",
     add_comment: "Izoh qoldirish",
-    confirm: "Buyurtmani tasdiqlash"
+    confirm: "Buyurtmani tasdiqlash",
+    add_product: "Mahsulot qo'shish"
   },
   links: {
     view_more: "Barchasini ko'rsatish",
@@ -65,9 +67,10 @@ export default {
   profile_menu: {
     info: "Profil ma`lumotlarim",
     my_orders: "Mening buyurtmalarim",
-    favorite: 'Sevimli mahsulotlar',
+    my_product: 'Mening mahsulotlarim',
     message: "Xabar",
     logout: "Chiqish",
+    favorite: "Sevimli mahsulotlar"
   },
   why_us: {
     card_1: {
@@ -182,5 +185,25 @@ export default {
     market_num: "Do’kon raqami bo’yicha",
     between: "Narx oralig’ini tanlang",
   },
-
+  add: {
+    photo: "Rasim",
+    upload_img: "Rasimni yuklang",
+    select_img: "Rasmni tanlang",
+    category: "Kategoriyani tanlang",
+    in_category: "Ichgi Kategoriyani tanlang",
+    name: "Mahsulot nomini kiriting",
+    unit: "O’lchov birligini tanlang",
+    price: "Narxini kiriting",
+    status: "Mavjudlik holati",
+    amount: "Miqdorini kiriting",
+    type_pay: "To’lov usulini tanlang",
+    delivery: "Yetkazib berish usulini tanlang",
+    country: "Mamlakatni tanlang",
+    region: "Viloyatni tanlang",
+    address: "Manzilni kiriting",
+    description: "Mahsulotga tavsif bering",
+    sale_title: "Agar sizning mahsulotingiz  chegirmali bo’lsa “chegirmali mahsulot” ni belgilang.",
+    check: "Chegirmali mahsulot",
+    add_product: "Mahsulotni qo’shish"
+  }
 }

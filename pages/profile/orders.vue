@@ -38,7 +38,7 @@
 <script>
 import ProfileMenu from "@/components/ProfileMenu";
 export default {
-  components: ProfileMenu,
+  components: {ProfileMenu},
   name: 'ProfileOrder',
   layout: 'main',
   data:() => ({}),

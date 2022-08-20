@@ -133,6 +133,7 @@ export default {
   components: { Slider, HotOffers },
   layout: 'main',
   name: 'IndexPage',
+  auth: false,
   data() {
     return {
       hotOffers: [

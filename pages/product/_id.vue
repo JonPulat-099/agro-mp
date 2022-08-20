@@ -5,7 +5,7 @@
         <div class="product">
           <div class="product__body d-flex">
             <div class="product__items">
-              <div :class="`product__item ${item.id == active_img ? 'active' : ''}`" v-for="(item, idx)  in product"
+              <div :class="`product__item ${item.id === active_img ? 'active' : ''}`" v-for="(item, idx)  in product"
                    :key="idx" @click="getImg(item)">
                 <img :src="item.img" alt="img">
               </div>
@@ -79,8 +79,8 @@
           </div>
 
           <div class="d-flex justify-space-between mb-6">
-            <Button status="warning_btn" :text="$t('btns.add_to_cart')"/>
-            <Button status="success_btn" :text="$t('btns.buy_now')"/>
+            <Button status="warning_btn" :text="$t('btns.add_to_cart')" :click="addToCard"/>
+            <Button status="success_btn" :text="$t('btns.buy_now')" :click="buyNow"/>
           </div>
         </div>
       </v-col>
@@ -343,6 +343,12 @@ export default {
     }
   },
   methods: {
+    addToCard() {
+      console.log('added')
+    },
+    buyNow() {
+      console.log('buy now')
+    },
     toggleFavourites() {
       this.is_favorite = !this.is_favorite
     },

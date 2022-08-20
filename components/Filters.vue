@@ -136,6 +136,7 @@
 
 <script>
 export default {
+  name:'ProfileFilters',
   data: () => ({
     currency: ['UZS', 'USD', 'RUB'],
     range: {

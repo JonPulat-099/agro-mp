@@ -1,6 +1,6 @@
 <template>
   <div class="login d-flex flex-column align-center mt-5">
-    <img src="/logo.svg" alt="logo" />
+    <img src="/logo_new.svg" alt="logo" />
     <div class="login__body elevation-5 mt-8 pa-4 px-6">
       <div class="login__title text-h6 text-center mb-5 mt-5">
         Tizimga kirish
@@ -15,7 +15,7 @@
         prefix="+998"
         v-mask="'(##)###-##-##'"
         v-model="user_login.phone"
-      ></v-text-field>
+      />
       <div class="green--text text-right text-caption login__forgod mt-4 mb-2">
         Parolingizni unutdingizmi ?
       </div>
@@ -33,7 +33,9 @@
         color="green"
         v-model="user_login.remember_me"
       />
-      <v-btn @click="userAuth" color="green" dark> Tasdiqlash </v-btn>
+      <div class="d-flex justify-center">
+        <v-btn @click="userAuth" color="green" :to="localePath('/')" dark> Tasdiqlash </v-btn>
+      </div>
       <!-- <nuxt-link to="/" class="connect"> Tadiqlash </nuxt-link> -->
       <v-row class="mt-4 mb-6" align="center">
         <v-divider />
@@ -52,7 +54,7 @@
           color="green"
           class="text-center mb-5 mt-5"
           dark
-          to="/registration"
+          :to="localePath('/registration')"
         >
           Ro'yxatdan o'tish
         </v-btn>
@@ -73,25 +75,25 @@ export default {
   }),
   methods: {
     async userAuth() {
-      try {
-        const phone = String(this.user_login.phone).replaceAll(/[-\ ()]/g, '')
-        let resp = (await this.$auth.loginWith('local', {
-          data: {
-            phone: '998'+ phone,
-            password: this.user_login.password
-          }
-        })).data
-        if (resp.state === "success" && resp.data?.token) {
-          this.$auth.setUserToken(resp.data.token)
-          this.$store.commit("cabinet/setUserInfo", resp.data.info)
-          this.$router.push("/profile")
-        }
-        else {
-          alert("Something went Error")
-        }
-      } catch (error) {
-        console.log(error);
-      }
+      // try {
+      //   const phone = String(this.user_login.phone).replaceAll(/[-\ ()]/g, '')
+      //   let resp = (await this.$auth.loginWith('local', {
+      //     data: {
+      //       phone: '998'+ phone,
+      //       password: this.user_login.password
+      //     }
+      //   })).data
+      //   if (resp.state === "success" && resp.data?.token) {
+      //     this.$auth.setUserToken(resp.data.token)
+      //     this.$store.commit("cabinet/setUserInfo", resp.data.info)
+      //     this.$router.push("/profile")
+      //   }
+      //   else {
+      //     alert("Something went Error")
+      //   }
+      // } catch (error) {
+      //   console.log(error);
+      // }
     }
   },
 }

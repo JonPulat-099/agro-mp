@@ -4,18 +4,22 @@
       <div class="profile__body d-flex justify-space-between">
         <profile-menu/>
 
+        <div class="profile__main--nodata">
+
+        </div>
         <div class="profile__main">
           <div class="profile__main--title d-flex justify-space-between">
             <div>{{ $t("titles.profile_info") }}</div>
             <div><v-btn color="amber" elevation="0" dark small><v-icon size="18" class="mr-2">mdi-pencil</v-icon> {{$t("btns.change")}} </v-btn></div>
           </div>
           <div class="profile__main--avatar text-center">
-            <img src="/profile/avatar.svg" alt="avatar">
+            <img :src="photo_url" class="selected" alt="avatar" v-if="photo_url">
+            <img src="/profile/avatar.svg" alt="avatar" v-else>
           </div>
           <div>
             <v-file-input
               :rules="rules"
-              accept="image/png, image/jpeg, image/bmp"
+              accept="image/png, image/jpeg, image/jpg"
               placeholder="Pick an avatar"
               prepend-icon="mdi-camera"
               :label="$t('labels.select_img')"
@@ -24,6 +28,7 @@
               dense
               class="mt-5"
               color="#07d271"
+              v-model="user_avatar"
             />
           </div>
 
@@ -78,14 +83,9 @@
 
           <div class="profile__place">
             <div class="profile__place--title d-flex justify-space-between">
-<<<<<<< HEAD
-              <div>Boshqa ma’lumotlar</div>
-              <v-btn color="amber" elevation="0" dark small><v-icon size="18">mdi-pencil</v-icon>O’zgartirish</v-btn>
-=======
               <div>{{ $t('titles.other_info') }}</div>
               <v-btn color="amber" elevation="0" dark small><v-icon size="18">mdi-pencil</v-icon>
                 {{ $t('btns.change') }}</v-btn>
->>>>>>> fix all
             </div>
             <v-row class="mt-8">
               <v-col>
@@ -132,10 +132,12 @@
 <script>
 import ProfileMenu from "@/components/ProfileMenu";
 export default {
-  components: ProfileMenu,
+  components: {ProfileMenu},
   name: '',
   layout: 'main',
   data:() => ({
+    user_avatar: null,
+    photo_url: '',
     password: false,
     user_info: {
       name: '',
@@ -149,6 +151,12 @@ export default {
       value => !value || value.size < 5000000 || 'Avatar size should be less than 5 MB!',
     ],
   }),
+  watch: {
+    user_avatar(val){
+        // const avatar = val.target.files[0];
+        if(val) this.photo_url = URL.createObjectURL(val);
+    }
+  },
   methods: {
 
   }

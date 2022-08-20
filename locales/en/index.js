@@ -16,8 +16,10 @@ export default {
     comment: "Notes",
     product_rating: " Rate the product",
     all: "General",
-    other_info: "Other informations",
-    all_remove: "Delete all favorites",
+    other_info: "Other information",
+    all_remove: "Delete all products",
+    my_products: "Products",
+    no_product: "You have not added a product yet"
   },
   navbar: {
     which_product: "What product are you looking for?",
@@ -49,14 +51,15 @@ export default {
     order_confirm: " Order confirmation ",
     change: "change",
     search: "search",
-    add_to_cart: "add to cart",
+    add_to_cart: "Add to cart",
     buy_now: "Buy now",
     add_to_favorite: "Add to favorite",
     share: "Share",
     learn_more: "Learn More",
     searching: "Searching",
     add_comment: "Leave a comment",
-    confirm: "Order confirmation"
+    confirm: "Order confirmation",
+    add_product: "Add product"
   },
   links: {
     view_more: "View more",
@@ -65,10 +68,10 @@ export default {
   profile_menu: {
     info: " My profile information ",
     my_orders: "My orders",
-    favorite: 'Favorite products',
+    my_product: 'My products',
     message: "Message",
     logout: "Log out",
-
+    favorite: "Favorite products"
   },
   why_us: {
     card_1: {
@@ -182,6 +185,27 @@ export default {
     by_type: "By types",
     market_num: "By store number",
     between: "Select a price range",
+  },
+  add: {
+    photo: "Picture",
+    upload_img: "Upload image",
+    select_img: "Select Image",
+    category: "Select a category",
+    in_category: "Select an internal Category",
+    name: "Enter Product Name",
+    unit: "Select a unit of measurement",
+    price: "Enter price",
+    status: "Availability Status",
+    amount: "Enter amount",
+    type_pay: "Select a payment method",
+    delivery: "Select a delivery method",
+    country: "Select a country",
+    region: "Select region",
+    address: "Enter an address",
+    description: "Describe the product",
+    sale_title: "If your product is on sale, select 'discounted product'.",
+    check: "Discounted product",
+    add_product: "Add Product"
   }
 }
 

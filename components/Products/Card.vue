@@ -2,7 +2,7 @@
   <v-card class="product__card">
     <v-card-title elevation="0">
       <span v-if="card.is_new" class="new"> Yangi </span>
-      <v-btn icon @click="toggleFavourites">
+      <v-btn icon @click="toggleFavourites(card)">
         <v-icon v-if="!card.is_favorite" color="#F8C018">
           mdi-heart-outline
         </v-icon>
@@ -38,7 +38,7 @@
         </v-btn>
       </aside>
       <aside>
-        <v-btn icon>
+        <v-btn icon @click="addBasket(card)">
           <img src="/icons/bag.svg" alt="" />
         </v-btn>
       </aside>
@@ -55,8 +55,21 @@ export default {
   },
 
   methods: {
-    toggleFavourites() {
+    toggleFavourites(item) {
       this.card.is_favorite = !this.card.is_favorite
+      const favorite = this.card.is_favorite
+      if(favorite) {
+        this.$store.commit('setFavorite', item);
+        this.$toast.success(`" ${item.product_name} " added to Favorite !`, {theme: 'bubble'})
+      }
+      else  {
+        this.$store.commit('deleteFavorite', item.id);
+        this.$toast.success('Product removed from Favorite !', {theme: 'bubble'})
+      }
+    },
+    addBasket(item) {
+      this.$store.commit('setProduct', item);
+      this.$toast.success('Product added !', {theme: 'bubble'})
     },
   },
 }

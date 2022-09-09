@@ -11,7 +11,7 @@
         md="6"
         sm="12"
       >
-        <products-card :card="p" />
+        <products-card :card="p" :id="idx"/>
       </v-col>
     </v-row>
   </div>
@@ -20,6 +20,7 @@
 <script>
 export default {
   layout: 'main',
+  name: 'FavoritePage',
   data: () => ({
     // favorite_product: []
   }),

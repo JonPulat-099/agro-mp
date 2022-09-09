@@ -2,15 +2,14 @@
   <v-card class="product__card">
     <v-card-title elevation="0">
       <span v-if="card.is_new" class="new"> Yangi </span>
-      <v-btn icon @click="toggleFavourites(card)">
-        <v-icon v-if="!card.is_favorite" color="#F8C018">
-          mdi-heart-outline
+      <v-btn icon @click="toggleFavourites(card, id)">
+        <v-icon color="#F8C018">
+          {{ !card.is_favorite ? 'mdi-heart-outline' : 'mdi-heart' }}
         </v-icon>
-        <v-icon v-else color="#F8C018">mdi-heart</v-icon>
       </v-btn>
     </v-card-title>
     <v-card-text>
-      <img :src="card.img" alt="" />
+      <img :src="card.img" alt="card image" />
       <article class="product__info">
         <div class="category">
           <p>{{ card.category_name }}</p>
@@ -19,11 +18,11 @@
             {{ card.rating }}
           </span>
         </div>
-        <nuxt-link :to="localePath(`/product/${card.product_name}`)" class="product-name">
-          <p class="product__name">{{ card.product_name }}</p>
+        <nuxt-link :to="localePath(`/product/${card.category_name}`)" class="product-name">
+          <p class="product__name">{{ card.title }}</p>
         </nuxt-link>
         <p class="cost">
-          {{ card.cost }} <span> {{ card.currency }} / {{ card.unit }} </span>
+          {{ card.cost.toLocaleString() }} <span> {{ card.currency }} / {{ card.unit }} </span>
         </p>
       </article>
     </v-card-text>
@@ -49,22 +48,22 @@
 <script>
 export default {
   name: 'ProductCard',
-  props: ['card'],
+  props: ['card', 'id'],
   data() {
     return {}
   },
 
   methods: {
-    toggleFavourites(item) {
-      this.card.is_favorite = !this.card.is_favorite
-      const favorite = this.card.is_favorite
-      if(favorite) {
+    toggleFavourites(item, id) {
+      const check = item.is_favorite;
+      if(!check) {
+      this.card.is_favorite = true
         this.$store.commit('setFavorite', item);
-        this.$toast.success(`" ${item.product_name} " added to Favorite !`, {theme: 'bubble'})
+        this.$toast.success(`" ${item.title} " added to Favorite !`, {theme: 'bubble'})
       }
       else  {
-        this.$store.commit('deleteFavorite', item.id);
-        this.$toast.success('Product removed from Favorite !', {theme: 'bubble'})
+        this.$store.commit('deleteFavorite', id);
+        this.$toast.success(`${item.title} removed from Favorite !`, {theme: 'bubble'})
       }
     },
     addBasket(item) {

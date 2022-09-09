@@ -35,7 +35,7 @@
             md="6"
             sm="12"
           >
-            <products-card :card="p" />
+            <products-card :card="p" :id="i"/>
           </v-col>
         </v-row>
       </div>
@@ -47,6 +47,7 @@
 <script>
 export default {
   layout: 'main',
+  name: 'CategoryPage',
   data: () => ({
     sort: ["Ommabop", "Yangi", "Narx o'sishi bo'yicha", "Narx kamayishi bo'yicha"],
     best_products: [
@@ -55,7 +56,7 @@ export default {
         img: '/apple.png',
         category_name: 'Sabzavotlar',
         rating: 4.5,
-        product_name: 'Qizil olma',
+        title: 'Qizil olma',
         cost: '20 000',
         currency: "so'm",
         unit: 'kg',
@@ -67,7 +68,7 @@ export default {
         img: '/tomato.png',
         category_name: 'Go`sht mahsulotlari',
         rating: 4,
-        product_name: 'Mol go`shti',
+        title: 'Mol go`shti',
         cost: '68 000',
         currency: "so'm",
         unit: 'kg',
@@ -79,7 +80,7 @@ export default {
         img: '/meat.png',
         category_name: 'Mevalar',
         rating: 4.5,
-        product_name: 'Qizil olma',
+        title: 'Qizil olma',
         cost: '15 000',
         currency: "so'm",
         unit: 'kg',
@@ -91,7 +92,7 @@ export default {
         img: '/banana.png',
         category_name: 'Mevalar',
         rating: 5,
-        product_name: 'Banan',
+        title: 'Banan',
         cost: '17 000',
         currency: "so'm",
         unit: 'kg',
@@ -103,7 +104,7 @@ export default {
         img: '/apple.png',
         category_name: 'Sabzavotlar',
         rating: 4.5,
-        product_name: 'Qizil olma',
+        title: 'Qizil olma',
         cost: '20 000',
         currency: "so'm",
         unit: 'kg',
@@ -115,7 +116,7 @@ export default {
         img: '/tomato.png',
         category_name: 'Go`sht mahsulotlari',
         rating: 4,
-        product_name: 'Mol go`shti',
+        title: 'Mol go`shti',
         cost: '68 000',
         currency: "so'm",
         unit: 'kg',
@@ -124,6 +125,16 @@ export default {
       },
     ],
   }),
+  created() {
+    // this.getAllProducts();
+  },
+  methods: {
+    getAllProducts() {
+      this.$axios.$get('/products-all/').then(res => {
+        this.best_products = res.data.products
+      })
+    }
+  }
 }
 </script>
 

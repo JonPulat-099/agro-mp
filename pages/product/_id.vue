@@ -18,12 +18,12 @@
       </v-col>
       <v-col>
         <div class="product__info">
-          <div class="product__info--id">{{ $t('product_info.product_id') }} <span>324256</span></div>
-          <div class="product__info--market">{{ $t('product_info.market_number') }} <span>B-124</span></div>
-          <div class="product__info--title">Qizil Olma</div>
-          <s class="product__info--old-price">18 000 so’m / kg</s>
+          <div class="product__info--id">{{ $t('product_info.product_id') }} <span>{{ product_info.product_id }}</span></div>
+          <div class="product__info--market">{{ $t('product_info.market_number') }} <span>{{ product_info.shop_number }}</span></div>
+          <div class="product__info--title">{{ product_info.name }}</div>
+          <s class="product__info--old-price">{{ product_info.cost > 0 ? product_info.cost.toLocaleString() : ''}} {{ product_info.currency }} / {{product_info.unit}}</s>
           <div class="d-flex justify-space-between align-center">
-            <div class="product__info--price">15 000<span> so’m / kg</span></div>
+            <div class="product__info--price">{{ product_info.sale_cost > 0 ? product_info.sale_cost.toLocaleString() : '' }}<span> {{ product_info.currency }} / {{ product_info.unit }}</span></div>
             <div class="product__info--rating d-flex align-center">
               <v-rating
                 v-model="rating"
@@ -41,8 +41,7 @@
             </div>
           </div>
           <div class="product__info--description">
-            Respublikamizning Jizzax viloyat Zomin tumanida yetishtirilgan sara Qizil shirin olma. Faqatgina ta’biy
-            ravishda yetishtirilgan saqlash uchun moslangan olma.
+            {{ product_info.description }}
           </div>
           <v-divider class="my-6"/>
           <div class="d-flex justify-space-between">
@@ -224,6 +223,7 @@ export default {
       date: new Date(),
       username: ''
     },
+    product_info: [],
     comments: [
       {
         like: 0,
@@ -342,7 +342,16 @@ export default {
       return date.toISOString().slice(0, 10)
     }
   },
+  created() {
+    // this.getOneProduct();
+  },
   methods: {
+    getOneProduct() {
+      const id = this.$route.params.id
+      this.$axios.$get(`/products/${id}`).then(res => {
+        this.product_info = res.data
+      })
+    },
     addToCard() {
       console.log('added')
     },

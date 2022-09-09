@@ -32,7 +32,7 @@
         <v-btn icon>
           <v-icon>mdi-minus</v-icon>
         </v-btn>
-        <span> 1 {{ card.unit }} </span>
+        <span> {{ card.unit }} </span>
         <v-btn icon>
           <v-icon>mdi-plus</v-icon>
         </v-btn>

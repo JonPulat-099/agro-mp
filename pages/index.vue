@@ -1,33 +1,6 @@
 <template>
   <div class="container">
     <slider />
-    <v-flex row wrap xs12 justify-space-between align-center>
-      <h1 class="headers mt-0">{{ $t('titles.best_categories') }}</h1>
-      <a href="#" class="show__more">
-        {{ $t('links.view_more') }}
-        <v-icon>mdi-chevron-right</v-icon>
-      </a>
-    </v-flex>
-
-    <v-layout row wrap class="best__categories">
-      <v-flex
-        v-for="(c, i) in best_categories"
-        :key="i"
-        md3
-        xs12
-        class="best__categories--items"
-      >
-        <article :style="`background: ${c.bg_color}`">
-          <aside>
-            <p>{{ c.name }}</p>
-            <span> {{ c.count }} </span>
-          </aside>
-          <aside>
-            <img :src="c.img" alt="" />
-          </aside>
-        </article>
-      </v-flex>
-    </v-layout>
     <div class="popular-header mb-10">
       <v-flex row wrap xs12 justify-space-between  align-center>
         <h1 class="headers mt-0 mb-0">{{ $t('titles.popular_products') }}</h1>
@@ -47,7 +20,7 @@
         md="6"
         sm="12"
       >
-        <products-card :card="p" />
+        <products-card :card="p" :id="i"/>
       </v-col>
     </v-row>
 
@@ -55,17 +28,17 @@
       <h1 class="headers">{{ $t('titles.hot_offers') }}</h1>
     </v-flex>
     <v-row class="blocks">
-      <v-col v-for="(o, idx) in hotOffers" :key="idx">
+      <v-col v-for="(offer, idx) in hotOffers" :key="idx">
         <hot-offers
-          :bg-color="o.bgColor"
-          :img="o.img"
-          :title="o.title"
-          :old-price="o.oldPrice"
-          :old-currency="o.oldCurrency"
-          :old-unit="o.oldUnit"
-          :new-price="o.oldPrice"
-          :new-currency="o.newCurrency"
-          :new-unit="o.newUnit"
+          :bg-color="offer.bgColor"
+          :img="offer.img"
+          :title="offer.title"
+          :old-price="offer.oldPrice"
+          :old-currency="offer.oldCurrency"
+          :old-unit="offer.oldUnit"
+          :new-price="offer.oldPrice"
+          :new-currency="offer.newCurrency"
+          :new-unit="offer.newUnit"
         />
       </v-col>
     </v-row>
@@ -90,7 +63,7 @@
         md="6"
         sm="12"
       >
-        <products-card :card="p" />
+        <products-card :card="p" :id="i"/>
       </v-col>
     </v-row>
 
@@ -119,7 +92,7 @@
           md="6"
           sm="12"
         >
-          <products-card :card="p" />
+          <products-card :card="p" :id="idx"/>
         </v-col>
       </v-row>
     </div>
@@ -197,14 +170,13 @@ export default {
           bg_color: '#FED6A5',
         },
       ],
-
       best_products: [
         {
           is_favorite: false,
           img: '/apple.png',
           category_name: 'Sabzavotlar',
           rating: 4.5,
-          product_name: 'Qizil olma',
+          title: 'Qizil olma',
           cost: '20 000',
           currency: "so'm",
           unit: 'kg',
@@ -216,7 +188,7 @@ export default {
           img: '/tomato.png',
           category_name: 'Go`sht mahsulotlari',
           rating: 4,
-          product_name: 'Mol go`shti',
+          title: 'Mol go`shti',
           cost: '68 000',
           currency: "so'm",
           unit: 'kg',
@@ -228,7 +200,7 @@ export default {
           img: '/meat.png',
           category_name: 'Mevalar',
           rating: 4.5,
-          product_name: 'Qizil olma',
+          title: 'Qizil olma',
           cost: '15 000',
           currency: "so'm",
           unit: 'kg',
@@ -240,7 +212,7 @@ export default {
           img: '/banana.png',
           category_name: 'Mevalar',
           rating: 5,
-          product_name: 'Banan',
+          title: 'Banan',
           cost: '17 000',
           currency: "so'm",
           unit: 'kg',
@@ -248,7 +220,6 @@ export default {
           count: 1,
         },
       ],
-
       new_products: [
         {
           is_favorite: null,
@@ -256,7 +227,7 @@ export default {
           img: '/apelsin.png',
           category_name: 'Mevalar',
           rating: 0,
-          product_name: 'Apelsin',
+          title: 'Apelsin',
           cost: '35 000',
           currency: "so'm",
           unit: 'kg',
@@ -269,7 +240,7 @@ export default {
           img: '/corn.png',
           category_name: 'Sabzavotlar',
           rating: 0,
-          product_name: 'Makkajo’hori',
+          title: 'Makkajo’hori',
           cost: '68 000',
           currency: "so'm",
           unit: 'kg',
@@ -282,7 +253,7 @@ export default {
           img: '/cucumber.png',
           category_name: 'Sabzavotlar',
           rating: 0,
-          product_name: 'Bodring',
+          title: 'Bodring',
           cost: '15 000',
           currency: "so'm",
           unit: 'kg',
@@ -295,7 +266,7 @@ export default {
           img: '/milk.png',
           category_name: 'Sut mahsulotlari',
           rating: 5,
-          product_name: 'Lactel suti',
+          title: 'Lactel suti',
           cost: '6 000',
           currency: "so'm",
           unit: 'kg',
@@ -303,7 +274,6 @@ export default {
           count: 1,
         },
       ],
-
       why_us: [
         {
           icon: '/natural.svg',

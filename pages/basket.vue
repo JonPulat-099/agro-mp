@@ -35,7 +35,7 @@
                 <v-btn icon outlined color="#07D271">
                   <v-icon>mdi-minus</v-icon>
                 </v-btn>
-                <span class="mx-2"> {{el.amount}} {{ el.unit }} </span>
+                <span class="mx-2"> 1 {{el.amount}} {{ el.unit }} </span>
                 <v-btn icon outlined color="#07D271" @click="upAmount(el)">
                   <v-icon>mdi-plus</v-icon>
                 </v-btn>
@@ -72,7 +72,7 @@
             <p class="pb-0 green--text font-weight-bold">247,000 <span class="font-weight-light">so’m</span></p>
           </div>
           <nuxt-link :to="localePath(  '/confirm')">
-            <Button :text="$t('btns.confirm')" status="success_btn"/>
+            <Button :text="$t('btns.confirm')" status="success_btn" :click="confirmProduct"/>
           </nuxt-link>
         </div>
       </v-col>
@@ -107,6 +107,9 @@ export default {
       if(val <= 1 ) {
         return val.amount + 1;
       }
+    },
+    confirmProduct() {
+      console.log('confirm')
     }
   }
 }

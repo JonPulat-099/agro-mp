@@ -13,7 +13,7 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/svg', href: '/logo_new.svg' }],
+    link: [{ rel: 'icon', type: 'image/svg', href: '/favicon.svg' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -22,7 +22,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/v-mask.js',
-    '~/plugins/mixins.js'
+    '~/plugins/mixins.js',
+    '~/plugins/axios.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -56,19 +57,19 @@ export default {
           login: {
             url: '/api/auth',
             method: 'post',
-            propertyName: 'token',
+            propertyName: 'token'
           },
           logout: false,
-          user: false,
-        },
-      },
+          user: false
+        }
+      }
     },
     redirect: {
       login: '/login',
       logout: '/',
       callback: '/',
-      home: '/',
-    },
+      home: '/'
+    }
   },
   // router: {
   //   middleware: ['auth', 'isAuth'],
@@ -120,8 +121,7 @@ export default {
     langDir: "locales/",
     strategy: 'prefix_except_default',
     defaultLocale: "uz",
-    parsePages: false,
-
+    parsePages: false
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

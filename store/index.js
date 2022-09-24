@@ -29,3 +29,5 @@ export default {
   state,
   mutations,
 }
+export const strict = false
+

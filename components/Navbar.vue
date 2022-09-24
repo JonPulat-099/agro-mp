@@ -85,14 +85,11 @@
               v-model="selected_category"
               active-class="active__category"
             >
-              <v-list-item
-                v-for="(item, i) in categories"
-                :key="i"
-              >
+              <v-list-item v-for="(item, i) in categories" :key="i">
                 <v-list-item-content>
                   <v-list-item-title>
                     <v-menu
-                      v-if="item.is_subCategory"
+                      v-if="item.has_subcategory"
                       offset-x
                       content-class="subcategory__menu"
                     >
@@ -104,7 +101,7 @@
                           @click="selected_category = i"
                         >
                           {{ item.name }}
-                          <v-icon v-if="item.is_subCategory">
+                          <v-icon v-if="item.has_subcategory">
                             mdi-chevron-right
                           </v-icon>
                         </div>
@@ -188,16 +185,16 @@ export default {
           url: '/profile',
         },
         {
-          name: 'lorem ipsum',
-          url: '#',
+          name: 'Contacts',
+          url: '/contacts',
         },
         {
-          name: 'lorem ipsum',
-          url: '#',
+          name: 'About Us',
+          url: '/about',
         },
         {
-          name: 'lorem ipsum',
-          url: '#',
+          name: 'News',
+          url: '/news',
         },
       ],
 
@@ -276,7 +273,7 @@ export default {
   },
   computed: {
     lang_list(){
-      return this.$i18n.locales;
+      return this.$i18n.locales.filter(elem => elem !== this.$i18n.locale)
     },
     links(){
        const links = [
@@ -314,7 +311,8 @@ export default {
   methods: {
     getCategories() {
       this.$axios.$get('/categories').then(res => {
-        this.categories = res.data.categories
+        console.log(res.data);
+        this.categories = res.data
       })
     },
     selectLang(selected) {
@@ -329,7 +327,6 @@ export default {
 
   },
   mounted() {
-
     // this.$store.commit('setNumber', 34);
   }
 }
